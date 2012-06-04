@@ -22,7 +22,7 @@ var json = {
 		"comments":["Gift Description:", "Leggings"],
 		"amount":["Quantity:","2"],
 		"location":["Where To Buy:","Online"],
-		"store":["Store Name:","Delias"],
+		"store":["Store Name:","Delias Online"],
 		"url":["Product Url:","delias.com"],
 		"date":["Date Added:","2011-10-03"]
 		},

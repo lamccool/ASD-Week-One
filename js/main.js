@@ -280,11 +280,11 @@ $('#window').bind("DOMContentLoaded", function(){
 		errMsg = $('errors');
 	makeCats();
 	//set link and click events
-	var displayData = $('displayData');
+	var displayData = $('#displayData');
 	$('#displayData').bind("click", getData);
-	var clearData =$('clear');
+	var clearData =$('#clearData');
 	$('#clearData').bind("click", clearLocal);
-	var save = $('submit');
-	$('#save').bind("click", validate);
+	var saveData = $('#saveData');
+	$('#saveData').bind("click", validate);
 
 });
