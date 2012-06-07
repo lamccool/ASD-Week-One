@@ -299,8 +299,8 @@ $('#gift').live('pageinit',function(){
 		dataType: 'json',
 		success: function(response){
 			console.log(response);
- 			for (var i=0, j=response.thegifts.length; i<j; i++){	
-      				var jdata = response.thegifts[i];	
+ 			for (var i=0, j=response.giftdata.length; i<j; i++){	
+      				var jdata = response.giftdata[i];	
         			$(''+	
 	           		'<div class="gifttitle">'+
 	           			'<h3>Category: '+ jdata.category +'</h3>'+
