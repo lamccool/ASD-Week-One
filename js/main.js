@@ -294,7 +294,7 @@ $('#gift').live('pageinit',function(){
 	$('#giftdata').empty();	
     $('<p>').html('JSON IMPORT').appendTo('#giftdata');
 	$.ajax({
-		url: 'js/json.json',
+		url: 'js/data.json',
 		type: 'GET',
 		dataType: 'json',
 		success: function(response){
