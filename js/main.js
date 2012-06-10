@@ -331,7 +331,7 @@ $('#gift').live('pageinit',function(){
 			type: 'GET',	
 			dataType: 'xml',	
 			success: function(xml){
-			console.log(xml);
+			//console.log(xml);
 			//var data = $.parseXML(xml);
 			//console.log(data);
 			var items = $(xml);
