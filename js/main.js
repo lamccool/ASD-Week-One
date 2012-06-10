@@ -312,7 +312,7 @@ $('#gift').live('pageinit',function(){
 						'<p>Date Added: '+ jdata.date +'</p>'+
 					'</div>'
 					).appendTo('#giftdata');
-	
+					console.log(xml);
 	    	 	} //for loop
 	 	 	}, //function	
 	 	 	error: function(errormessage){
