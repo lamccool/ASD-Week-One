@@ -17,7 +17,7 @@ $('#gift').live('pageinit',function(){
 
 	//create select field element and populate it with options.
 	function makeCats (){
-		var formTag = document.getElementsByTagName("form"), //formTag is an array of all form tags.
+		var formTag = $("form"), //formTag is an array of all form tags.
 			selectLi = $('select'),
 			makeSelect = $("select"); 
 			$('#makeSelect').attr("id", "category");
@@ -44,17 +44,17 @@ $('#gift').live('pageinit',function(){
 	function toggleControls(n){
 		switch(n){
 			case "on":
-				$('giftForm').hide();
-				$('clear').css('display','inline');
-				$('displayData').hide();
-				$('addNew').css('display','inline');
+				$('#giftForm').hide();
+				$('#clear').css('display','inline');
+				$('#displayData').hide();
+				$('#addNew').css('display','inline');
 				break;
 			case "off":
-				$('giftForm').show();
-				$('clear').css('display', 'inline');
-				$('displayData').css('display', 'inline');
-				$('addNew').hide();
-				$('items').hide();
+				$('#giftForm').show();
+				$('#clear').css('display', 'inline');
+				$('#displayData').css('display', 'inline');
+				$('#addNew').hide();
+				$('#items').hide();
 				break;
 			default:
 				return false;
