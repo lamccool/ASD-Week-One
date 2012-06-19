@@ -1,0 +1,10 @@
+{
+  "env": {
+    "local": {
+      "db": "http://127.0.0.1:5984/xmasapp"
+    },
+     "cloudant": {
+       "db": "https://caughteryoutedlieduchimp:nnivEvqcqTkgCvetAqyLDBaE@lmccool.cloundant.com/xmas/"
+    }
+  }
+}
