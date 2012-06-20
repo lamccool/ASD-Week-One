@@ -68,7 +68,7 @@ $('#gift').live('pageinit',function(){
     // If there is no key this means this is a brand new item and we need a new key
         var id = id;
     	if (!key){
-            var id                 = Math.floor(Math.random()*100000001);
+            id                 = Math.floor(Math.random()*100000001);
         }else{
             //set the id to the exisiting key we're editing so that it will save over the data.
             //the key is teh same key that's been passed along from the editSubmit event handler
@@ -129,7 +129,7 @@ $('#gift').live('pageinit',function(){
         $('date').value = item.date[1];
         
         //remove the initial listener from input 'save contact' button
-        save.removeEventListener ("click", storeData);
+        $('#submit').die('click');
         //Change submit button value to say edit button
         $('submit').value = "Edit List";
         var editSubmit = $('submit');
