@@ -293,7 +293,7 @@ $('#gift').live('pageinit',function(){
 		$('#giftdata').empty();
 		$('<p>').html('COUCH DATA IMPORT').appendTo('#giftdata');
 		$.ajax({
-			"url": "_view/gifts",
+			"url": "views/gifts",
 			"dataType": "json",
 			"success": function(data){
 				$.each(data.rows, function(index,gift){
