@@ -1,0 +1,86 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.wst.dtd.core,1.1.501.v201107252021,"org.eclipse.wst.dtd.core",1340222629656
+started,bundle,org.eclipse.wst.dtd.ui,1.0.600.v201103171359,"org.eclipse.wst.dtd.ui",1340222629657
+started,bundle,org.eclipse.wst.html.core,1.1.502.v201202091936,"org.eclipse.wst.html.core",1340222629671
+started,bundle,org.eclipse.wst.html.ui,1.0.602.v201202091936,"org.eclipse.wst.html.ui",1340222629671
+started,bundle,org.eclipse.wst.internet.cache,1.0.400.v201004280700,"org.eclipse.wst.internet.cache",1340222629678
+started,bundle,org.eclipse.wst.jsdt.core,1.1.102.v201111090634,"org.eclipse.wst.jsdt.core",1340222629679
+started,bundle,org.eclipse.wst.jsdt.manipulation,1.0.300.v201104272153,"org.eclipse.wst.jsdt.manipulation",1340222629680
+started,bundle,org.eclipse.wst.jsdt.ui,1.1.102.v201201131900,"org.eclipse.wst.jsdt.ui",1340222629682
+started,bundle,org.eclipse.wst.jsdt.web.core,1.0.401.v201108152113,"org.eclipse.wst.jsdt.web.core",1340222629682
+started,bundle,org.eclipse.wst.jsdt.web.ui,1.0.401.v201108152113,"org.eclipse.wst.jsdt.web.ui",1340222629683
+started,bundle,org.eclipse.wst.sse.core,1.1.602.v201112071516,"org.eclipse.wst.sse.core",1340222629683
+started,bundle,org.eclipse.wst.sse.ui,1.3.2.v201201041522,"org.eclipse.wst.sse.ui",1340222629684
+started,bundle,org.eclipse.wst.validation,1.2.303.v201202090300,"org.eclipse.wst.validation",1340222629709
+started,bundle,org.eclipse.wst.xml.core,1.1.602.v201201091944,"org.eclipse.wst.xml.core",1340222629710
+started,bundle,org.eclipse.wst.xml.ui,1.1.202.v201112071516,"org.eclipse.wst.xml.ui",1340222629722
+started,bundle,org.eclipse.wst.xsl.core,1.1.100.v201102270516,"org.eclipse.wst.xsl.core",1340222629739
+started,bundle,org.eclipse.wst.xsl.exslt.core,1.0.0.v201005240426,"org.eclipse.wst.xsl.exslt.core",1340222629741
+started,bundle,com.android.ide.eclipse.adt,18.0.0.v201203301601-306762,"com.android.ide.eclipse.adt",1340222629741
+os,sysinfo,,,"macosx",1340222629746
+arch,sysinfo,,,"x86_64",1340222629746
+ws,sysinfo,,,"cocoa",1340222629746
+locale,sysinfo,,,"en_US",1340222629746
+processors,sysinfo,,,"8",1340222629746
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1340222629746
+java.runtime.version,sysinfo,,,"1.6.0_33-b03-424-10M3720",1340222629746
+java.specification.name,sysinfo,,,"Java Platform API Specification",1340222629746
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1340222629746
+java.specification.version,sysinfo,,,"1.6",1340222629746
+java.vendor,sysinfo,,,"Apple Inc.",1340222629746
+java.version,sysinfo,,,"1.6.0_33",1340222629746
+java.vm.info,sysinfo,,,"mixed mode",1340222629746
+java.vm.name,sysinfo,,,"Java HotSpot(TM) 64-Bit Server VM",1340222629746
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1340222629746
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1340222629746
+java.vm.specification.version,sysinfo,,,"1.0",1340222629746
+java.vm.vendor,sysinfo,,,"Apple Inc.",1340222629746
+java.vm.version,sysinfo,,,"20.8-b03-424",1340222629746
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1340222657496
+activated,editor,org.eclipse.wst.html.ui,1.0.602.v201202091936,"org.eclipse.wst.html.core.htmlsource.source",1340222657499
+activated,view,org.eclipse.wst.jsdt.ui,1.1.102.v201201131900,"org.eclipse.wst.jsdt.ui.PackageExplorer",1340222661272
+activated,editor,org.eclipse.wst.html.ui,1.0.602.v201202091936,"org.eclipse.wst.html.core.htmlsource.source",1340222661330
+started,bundle,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.resources",1340222661338
+opened,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1340222661476
+closed,view,org.eclipse.wst.jsdt.ui,1.1.102.v201201131900,"org.eclipse.wst.jsdt.ui.PackageExplorer",1340222661479
+started,bundle,org.eclipse.wst.server.core,1.1.304.v20120208_1420,"org.eclipse.wst.server.core",1340222671017
+started,bundle,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui",1340222671030
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1340222675349
+activated,editor,org.eclipse.wst.html.ui,1.0.602.v201202091936,"org.eclipse.wst.html.core.htmlsource.source",1340222675395
+closed,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1340222675401
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1340222677193
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1340223130879
+closed,editor,org.eclipse.wst.html.ui,1.0.602.v201202091936,"org.eclipse.wst.html.core.htmlsource.source",1340223134808
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1340223136933
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1340223138224
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1340223149451
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1340223150835
+error,log,,,"Part already exists in page layout: org.eclipse.ui.navigator.ProjectExplorer.",1340223150849
+opened,view,org.eclipse.wst.jsdt.ui,1.1.102.v201201131900,"org.eclipse.wst.jsdt.ui.PackageExplorer",1340223150877
+opened,view,org.eclipse.ui.ide,3.7.0.v20110928-1505,"org.eclipse.ui.views.ProblemView",1340223150983
+opened,view,org.eclipse.ui.views,3.6.0.v20110928-1505,"org.eclipse.ui.views.ContentOutline",1340223150998
+activated,perspective,org.eclipse.wst.jsdt.ui,1.1.102.v201201131900,"org.eclipse.wst.jsdt.ui.JavaPerspective",1340223151013
+activated,view,org.eclipse.wst.jsdt.ui,1.1.102.v201201131900,"org.eclipse.wst.jsdt.ui.PackageExplorer",1340223151017
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.window.resetPerspective",1340223151225
+closed,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1340223157774
+stopped,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.200.v20110815-1419,"org.eclipse.equinox.p2.ui.sdk",1340223158153
+stopped,bundle,org.eclipse.wst.xsl.jaxp.debug.ui,1.0.200.v201103081922,"org.eclipse.wst.xsl.jaxp.debug.ui",1340223158153
+stopped,bundle,overlay.com.android.ide.eclipse.adt.overlay,18.0.0.v201203301601-306762,"overlay.com.android.ide.eclipse.adt.overlay",1340223158153
+stopped,bundle,com.android.ide.eclipse.adt,18.0.0.v201203301601-306762,"com.android.ide.eclipse.adt",1340223158153
+stopped,bundle,org.eclipse.jdt.junit,3.7.0.v20110928-1453,"org.eclipse.jdt.junit",1340223158155
+stopped,bundle,org.eclipse.jdt.debug.ui,3.6.1.v20111006_r372,"org.eclipse.jdt.debug.ui",1340223158156
+stopped,bundle,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui",1340223158179
+stopped,bundle,org.eclipse.wst.dtd.ui,1.0.600.v201103171359,"org.eclipse.wst.dtd.ui",1340223158179
+stopped,bundle,org.eclipse.wst.jsdt.web.ui,1.0.401.v201108152113,"org.eclipse.wst.jsdt.web.ui",1340223158181
+stopped,bundle,org.eclipse.wst.web.ui,1.1.500.v201111030500,"org.eclipse.wst.web.ui",1340223158181
+stopped,bundle,org.eclipse.wst.html.ui,1.0.602.v201202091936,"org.eclipse.wst.html.ui",1340223158182
+stopped,bundle,org.eclipse.wst.css.ui,1.0.601.v201201101544,"org.eclipse.wst.css.ui",1340223158182
+stopped,bundle,org.eclipse.wst.xsl.exslt.ui,1.0.0.v201006012005,"org.eclipse.wst.xsl.exslt.ui",1340223158182
+stopped,bundle,org.eclipse.wst.xsl.ui,1.1.200.v201103082057,"org.eclipse.wst.xsl.ui",1340223158205
+stopped,bundle,org.eclipse.wst.xml.xpath.ui,1.1.100.v201105030025,"org.eclipse.wst.xml.xpath.ui",1340223158206
+stopped,bundle,org.eclipse.wst.xsd.ui,1.2.404.v201105050216,"org.eclipse.wst.xsd.ui",1340223158210
+stopped,bundle,org.eclipse.wst.xsl.debug.ui,1.0.200.v201101281837,"org.eclipse.wst.xsl.debug.ui",1340223158210
+stopped,bundle,org.eclipse.wst.xml.ui,1.1.202.v201112071516,"org.eclipse.wst.xml.ui",1340223158211
+stopped,bundle,org.eclipse.wst.common.ui,1.1.500.v200911190730,"org.eclipse.wst.common.ui",1340223158212
+stopped,bundle,org.eclipse.wst.jsdt.debug.rhino.ui,1.0.1.v201201112313,"org.eclipse.wst.jsdt.debug.rhino.ui",1340223158213
+stopped,bundle,org.eclipse.wst.jsdt.debug.ui,1.0.101.v201201112313,"org.eclipse.wst.jsdt.debug.ui",1340223158218
