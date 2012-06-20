@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="11" version="2.0">
+<workbench progressCount="16" version="2.0">
 <workbenchAdvisor/>
-<window height="763" width="1317" x="108" y="58">
+<window height="763" width="1317" x="105" y="51">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -42,7 +42,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="main.js" partName="main.js" path="/Users/Laura/github/local/ASD-Week-One/xmas/xmasapp/app/xmas2/app/_attachments/main.js" title="main.js" tooltip="xmas2/app/_attachments/main.js" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/xmas2/app/_attachments/main.js"/>
-<editorState selectionHorizontalPixel="7" selectionLength="0" selectionOffset="11880" selectionTopPixel="4457"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2294" selectionTopPixel="876"/>
 </editor>
 </editors>
 <views>
@@ -78,9 +78,7 @@
 </view>
 <view id="org.eclipse.wst.jsdt.ui.PackageExplorer" partName="Script Explorer">
 <viewState group_libraries="1" isWindowWorkingSet="false" layout="1" linkWithEditor="0" rootMode="1" workingSetName="">
-<customFilters userDefinedPatternsEnabled="false">
-<xmlDefinedFilters>
-<child filterId="org.eclipse.wst.jsdt.ui.PackageExplorer.ClosedProjectsFilter" isEnabled="false"/>
+<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="org.eclipse.wst.jsdt.ui.PackageExplorer.ClosedProjectsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.wst.jsdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
 <child filterId="org.eclipse.wst.jsdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.wst.jsdt.ui.PackageExplorer.LocalTypesFilter" isEnabled="false"/>
@@ -227,8 +225,11 @@
 <item historyLabel="additem.html" index="4">
 <position info="not_deleted" x="5426" y="0"/>
 </item>
-<item active="true" historyLabel="main.js" index="5">
+<item historyLabel="main.js" index="5">
 <position/>
+</item>
+<item active="true" historyLabel="main.js" index="5">
+<position info="not_deleted" x="86" y="9"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
