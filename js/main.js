@@ -288,6 +288,45 @@ $('#gift').live('pageinit',function(){
 
 // DATA CALLS
 
+	// couchdata function
+	$('#couchbutton').bind('click', function(){
+		$('#giftdata').empty();
+		$('<p>').html('COUCH DATA IMPORT').appendTo('#giftdata');
+		$.ajax({
+			"url": "_view/gifts",
+			"dataType": "json",
+			"success": function(data){
+				$.each(data.rows, function(index,gift){
+				var category = gift.value.category;
+				var comments = gift.value.comments;
+				var amount = gift.value.amount;
+				var location = gift.value.location;
+				var store = gift.value.store;
+				var url = gift.value.url;
+				var date = gift.value.date;
+				$('#giftlist').append(
+						$('<div data-role="content">').append(
+								$('<ul data-role="listview">').append(
+									$('<li>').append(
+											$('<h3>Category: '+ category +'</h3>'+
+											  '<p>Gift Description: '+ comments +'</p>'+
+										      '<p>Quantity: '+ amount +'</p>'+
+											  '<p>Where to Buy: '+ location +'</p>'+
+											  '<p>Store Name: '+ store +'</p>'+
+										      '<p>Product URL: '+ url +'</p>'+
+											  '<p>Date Added: '+ date +'</p>'+		
+											  )
+								     	) //append 4	
+							     	) //append 3
+						    	)//append 2
+						); //append 1
+					});//function
+				$('#giftlist').listview('refresh');
+			}
+		});
+	});	
+			
+
 
 // JSON Data 
 	$('#jsonbutton').bind('click', function(){
