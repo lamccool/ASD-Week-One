@@ -66,7 +66,7 @@ $('#gift').live('pageinit',function(){
     
     function storeData(key){
     // If there is no key this means this is a brand new item and we need a new key
-        var id = id
+        var id = id;
     	if (!key){
             var id                 = Math.floor(Math.random()*100000001);
         }else{
