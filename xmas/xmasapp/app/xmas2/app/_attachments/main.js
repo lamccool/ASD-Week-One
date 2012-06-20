@@ -92,6 +92,30 @@ $('#gift').live('pageinit',function(){
         alert("Item Added!");
     }
 
+    
+    function validate(e){
+        //define elements we want to check
+        var getCategory = $('category');
+        var getComments = $('comments');
+        var getAmount = $('amount');
+        
+        //Reset Error Message
+        errMsg.innerHTML ="";
+        $('#getCategory').css({border: '1px solid black'});
+        $('#getComments').css({border: '1px solid black'});
+        $('#getAmount').css({border: '1px solid black'});
+        
+        //Get Error Messages
+        var messageAry = [];
+        //Category Validation
+        if (getCategory.value === "--Choose A Gift Category--"){
+            var categoryError = "Please choose a category.";
+            $('#getCategory').css({border: '1px solid red'});
+            messageAry.push(categoryError);
+        }
+        
+    
+    
     //Get image for the right category
     function getImage(catName, makeSubList){
         var imageLi = $('li');
@@ -316,7 +340,6 @@ $('#gift').live('pageinit',function(){
                                               '<p>Product URL: '+ url +'</p>'+
                                               '<p>Date Added: '+ date +'</p>'+        
                 							)
-                							};
                                          ) //append 4    
                                      ) //append 3
                                 )//append 2
