@@ -90,9 +90,8 @@ $('#gift').live('pageinit',function(){
         //Save Data in localStorage: Use Stringify to convert our object to a string.
         localStorage.setItem(id, JSON.stringify(item));
         alert("Item Added!");
-    }
+    };
 
-    
     function validate(e){
         //define elements we want to check
         var getCategory = $('category');
@@ -114,7 +113,29 @@ $('#gift').live('pageinit',function(){
             messageAry.push(categoryError);
         }
         
-    
+        //Comments validation
+        if (getComments.value === ""){
+            var commentsError = "Please include your item.";
+            $('#getComments').css({border: '1px solid red'});
+            messageAry.push(commentsError);
+        }
+        
+        //If there were errors display them on the screen
+        if(messageAry.length >= 1){
+            for(var i=0, j=messageAry.length; i < j; i++){
+                var txt = $('li');
+                txt.innerHTML = messageAry[i];
+                $('errMsg').append('txt');
+            }    
+            e.preventDefault();
+            return false;    
+        }else {
+            //If all is well save our data. send the key value (which came from editData function
+            //remember this key value was passed thru the editSubmit event listener as a property
+            storeData(this.key);
+        }
+
+    };
     
     //Get image for the right category
     function getImage(catName, makeSubList){
@@ -186,50 +207,6 @@ $('#gift').live('pageinit',function(){
         }
     }
     
-    function validate(e){
-        //define elements we want to check
-        var getCategory = $('category');
-        var getComments = $('comments');
-        var getAmount = $('amount');
-        
-        //Reset Error Message
-        errMsg.innerHTML ="";
-        $('#getCategory').css({border: '1px solid black'});
-        $('#getComments').css({border: '1px solid black'});
-        $('#getAmount').css({border: '1px solid black'});
-        
-        //Get Error Messages
-        var messageAry = [];
-        //Category Validation
-        if (getCategory.value === "--Choose A Gift Category--"){
-            var categoryError = "Please choose a category.";
-            $('#getCategory').css({border: '1px solid red'});
-            messageAry.push(categoryError);
-        }
-        
-        //Comments validation
-        if (getComments.value === ""){
-            var commentsError = "Please include your item.";
-            $('#getComments').css({border: '1px solid red'});
-            messageAry.push(commentsError);
-        }
-        
-        //If there were errors display them on the screen
-        if(messageAry.length >= 1){
-            for(var i=0, j=messageAry.length; i < j; i++){
-                var txt = $('li');
-                txt.innerHTML = messageAry[i];
-                $('errMsg').append('txt');
-            }    
-            e.preventDefault();
-            return false;    
-        }else {
-            //If all is well save our data. send the key value (which came from editData function
-            //remember this key value was passed thru the editSubmit event listener as a property
-            storeData(this.key);
-        }
-
-    };
     //Make Item Links Function
     //Create edit and delete links for each stored item when displayed
     
