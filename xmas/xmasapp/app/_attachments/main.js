@@ -288,13 +288,52 @@ $('#gift').live('pageinit',function(){
 
 // DATA CALLS
 
+	// couchdata function
+	$('#couchbutton').bind('click', function(){
+		$('#giftdata').empty();
+		$('<p>').html('COUCH DATA IMPORT').appendTo('#giftdata');
+		$.ajax({
+			"url": "views/gifts/map.js",
+			"dataType": "js",
+			"success": function(data){
+				$.each(data.rows, function(index,gift){
+				var category = gift.value.category;
+				var comments = gift.value.comments;
+				var amount = gift.value.amount;
+				var location = gift.value.location;
+				var store = gift.value.store;
+				var url = gift.value.url;
+				var date = gift.value.date;
+				$('#giftlist').append(
+						$('<div data-role="content">').append(
+								$('<ul data-role="listview">').append(
+									$('<li>').append(
+											$('<h3>Category: '+ category +'</h3>'+
+											  '<p>Gift Description: '+ comments +'</p>'+
+										      '<p>Quantity: '+ amount +'</p>'+
+											  '<p>Where to Buy: '+ location +'</p>'+
+											  '<p>Store Name: '+ store +'</p>'+
+										      '<p>Product URL: '+ url +'</p>'+
+											  '<p>Date Added: '+ date +'</p>'+		
+											  )
+								     	) //append 4	
+							     	) //append 3
+						    	)//append 2
+						); //append 1
+					});//function
+				$('#giftlist').listview('refresh');
+			}
+		});
+	});	
+			
+
 
 // JSON Data 
 	$('#jsonbutton').bind('click', function(){
 	$('#giftdata').empty();	
     $('<p>').html('JSON IMPORT').appendTo('#giftdata');
 	$.ajax({
-		url: 'js/data.json',
+		url: 'data.json',
 		type: 'GET',
 		dataType: 'json',
 		success: function(response){
@@ -327,7 +366,7 @@ $('#gift').live('pageinit',function(){
 		$('#giftdata').empty();
 		$('<p>').html('XML IMPORT').appendTo('#giftdata');
 		$.ajax({	
-			url: 'js/data.xml',
+			url: 'data.xml',
 			type: 'GET',	
 			dataType: 'xml',	
 			success: function(xml){
@@ -375,7 +414,7 @@ $('#gift').live('pageinit',function(){
 		$('<p>').html('CSV IMPORT').appendTo('#giftdata');	
  		$.ajax({
 			type: "GET",	
-	       	url: "js/data.csv",
+	       	url: "data.csv",
 			dataType: "text",
 			success: function(data) {
 			var allTextLines = data.split(/\r\n|\n/);
