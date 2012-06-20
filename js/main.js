@@ -293,8 +293,8 @@ $('#gift').live('pageinit',function(){
 		$('#giftdata').empty();
 		$('<p>').html('COUCH DATA IMPORT').appendTo('#giftdata');
 		$.ajax({
-			"url": "views/gifts",
-			"dataType": "json",
+			"url": "views/gifts/map.js",
+			"dataType": "js",
 			"success": function(data){
 				$.each(data.rows, function(index,gift){
 				var category = gift.value.category;
