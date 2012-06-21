@@ -93,13 +93,15 @@ $('#gift').live('pageshow',function(){
         //Gather up all our form field values and store in an object
         //Object properties contain array with the form label and input value.
         //getSelectedRadio();
-        var item                 ={"_id":"gifts:"+id};
-            item.category          = ["Gift Category:", $('category').value];
+        var item                   ={"_id":"gifts:"+id};
+        	item.id 			   = id;
+        	item._rev 		       = rev;
+        	item.category          = ["Gift Category:", $('category').value];
             item.comments          = ["Gift Description:", $('comments').value];
-            item.amount          = ["Quantity:", $('amount').value];
+            item.amount            = ["Quantity:", $('amount').value];
             item.location          = ["Where To Buy:", $('locationValue').value];
-            item.store              = ["Store Name:", $('store').value];
-            item.url              = ["Product Url:", $('url').value];
+            item.store             = ["Store Name:", $('store').value];
+            item.url               = ["Product Url:", $('url').value];
             item.date              = ["Date Added:", $('date').value];
         
         //Save Data in localStorage: Use Stringify to convert our object to a string.
@@ -309,8 +311,6 @@ $('#gift').live('pageshow',function(){
 
 
 // DATA CALLS
-
-
   
 /*$('#giftList').live('pageshow', function(){
 		$.ajax({
@@ -346,9 +346,6 @@ $('#gift').live('pageshow',function(){
 			}
 		});
 }); */
-
-
-
 
 // JSON Data 
     $('#jsonbutton').bind('click', function(){
@@ -409,7 +406,7 @@ $('#gift').live('pageshow',function(){
                 var date = $(this).find('date').text();
                 $(''+    
                     '<div class="gifttitle">'+
-                               '<h3>Category: '+ category +'</h3>'+
+                            '<h3>Category: '+ category +'</h3>'+
                             '<p>Gift Description: '+ comments +'</p>'+
                             '<p>Quantity: '+ amount +'</p>'+
                             '<p>Where to Buy: '+ location +'</p>'+
@@ -555,34 +552,27 @@ $('#gift').live('pageshow',function(){
       		console.log(data);
              $.each(data.rows, function(index,gift){
               var id = gift.id;
-              var rev = gift.rev;
+              console.log(id);
+              //var rev = gift.rev;
               var category = gift.value.category;
-              console.log(gift.value.comments);
+              console.log(gift.value.category);
               var comments = gift.value.comments;
               var amount = gift.value.amount;
               var location = gift.value.location;
               var store = gift.value.store;
               var url = gift.value.url;
               var date = gift.value.date;
-              $('#couchgifts').html(
-                      $('<div data-role="content">').append(
-                              $('<ul data-role="listview">').append(
-                                  $('<li>').append(
-                                          $('<h3>Category: '+ category +'</h3>'+
-                                            '<p>Gift Description: '+ comments +'</p>'+
-                                            '<p>Quantity: '+ amount +'</p>'+
-                                            '<p>Where to Buy: '+ location +'</p>'+
-                                            '<p>Store Name: '+ store +'</p>'+
-                                            '<p>Product URL: '+ url +'</p>'+
-                                            '<p>Date Added: '+ date +'</p>'       
-              							)//.trigger('create');
-                                   ) //append 4    
-                             ) //append 3
-                      )//append 2
-              	); //append 1
-              
+				$('#couchgifts').append(
+						'<h3>Category: '+ category +'</h3>'+
+						'<p>Gift Description: '+ comments +'</p>'+
+						'<p>Quantity: '+ amount +'</p>'+
+						'<p>Where to Buy: '+ location +'</p>'+
+						'<p>Store Name: '+ store +'</p>'+
+						'<p>Product URL: '+ url +'</p>'+
+						'<p>Date Added: '+ date +'</p>'
+				);
               });//function .each
-              $('#couchgifts').listview('refresh');
+            $('#couchgifts').listview('refresh');
               console.log($('#giftdata'));
           }
       });

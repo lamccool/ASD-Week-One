@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="styles.css"/>
 	
 	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
-	<script src="modernizr.custom.min.js"></script>
+	<script src="jmodernizr.custom.min.js"></script>
 
 </head>
 <body>

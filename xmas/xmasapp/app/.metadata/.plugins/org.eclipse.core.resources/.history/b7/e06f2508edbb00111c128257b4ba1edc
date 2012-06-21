@@ -5,6 +5,11 @@
 
 $('#gift').live('pageshow',function(){
 	console.log("gift page loaded");
+	$.couch.db('xmasapp').view('xmas/gifts',{
+			success: function(data) {
+			console.log("CouchDB JSON loaded");
+			}
+			});
     /*$.couch.db('xmasapp').view("xmas/gifts", {
     	success: function(data){
     		$('#giftList').empty();
@@ -22,21 +27,6 @@ $('#gift').live('pageshow',function(){
     	}
     }); */
 
-//key
-
-var urlVars = function(){
-	var urlData = $($.mobile.activePage).data("url");
-	var urlParts = urlData.split('?');
-	var urlPairs = urlParts[1].split('&');
-	var urlValues = {};
-	for(var pair in urlPairs){
-		var keyValue = urlPairs[pair].split('=');
-		var key = decodeURIComponent(keyValue[0]);
-		var value = decodeURIComponent(keyValue[1]);
-		urlValues[key] = value;
-	}
-	return urlValues;
-};
 
   //var defaults
     var giftCategory = ["--Choose A Gift Category--", "Electronics", "Entertainment", "Apparel", "Music", "Books", "Etc"],
@@ -320,47 +310,42 @@ var urlVars = function(){
 
 // DATA CALLS
 
-    // couchdata function
-    $('#couchbutton').bind('click', function(){
-    	console.log("button pressed");
-        $('#giftdata').empty();
-        $('<p>').html('COUCH DATA IMPORT').appendTo('#giftdata');
-        $.couch.db('xmasapp').view("xmas/gifts", {
-        	"success": function(data){
-        		console.log(data);
-                $.each(data.rows, function(index,gift){ 
-                var category = gift.value.category;
-                console.log(gift.value.comments);
-                var comments = gift.value.comments;
-                var amount = gift.value.amount;
-                var location = gift.value.location;
-                var store = gift.value.store;
-                var url = gift.value.url;
-                var date = gift.value.date;
-                $('#giftdata').html(
-                        $('<div data-role="content">').append(
-                                $('<ul data-role="listview">').append(
-                                    $('<li>').append(
-                                            $('<h3>Category: '+ category +'</h3>'+
-                                              '<p>Gift Description: '+ comments +'</p>'+
-                                              '<p>Quantity: '+ amount +'</p>'+
-                                              '<p>Where to Buy: '+ location +'</p>'+
-                                              '<p>Store Name: '+ store +'</p>'+
-                                              '<p>Product URL: '+ url +'</p>'+
-                                              '<p>Date Added: '+ date +'</p>'       
-                							)//.trigger('create');
-                                     ) //append 4    
-                               ) //append 3
-                        )//append 2
-                	); //append 1
-                
-                });//function .each
-                //$('#giftdata').listview('refresh');
-                console.log($('#giftdata'));
-            }
-        });
-    });    
+
+  
+/*$('#giftList').live('pageshow', function(){
+		$.ajax({
+			url: '_view/gifts',
+			type: 'GET',
+			dataType: 'json',
+			success: function(data){
+				console.log("Gift time!", data);
+				$.each(data.rows, function(index, gift){
+					console.log(gift.id);
+					var category = gift.value.category;
+					console.log(gift.value.comments);
+					var comments = gift.value.comments;
+					var amount = gift.value.amount;
+					var location = gift.value.location;
+					var store = gift.value.store;
+					var url = gift.value.url;
+					var date = gift.value.date;
             
+					$('#couchgifts').append('<div data-role="content">' +
+							'<h3>Category: '+ category +'</h3>'+
+							'<p>Gift Description: '+ comments +'</p>'+
+							'<p>Quantity: '+ amount +'</p>'+
+							'<p>Where to Buy: '+ location +'</p>'+
+							'<p>Store Name: '+ store +'</p>'+
+							'<p>Product URL: '+ url +'</p>'+
+							'<p>Date Added: '+ date +'</p>'
+            			'</div>');
+				});
+			},
+			error: function(result){
+				console.log("Gift" + result);
+			}
+		});
+}); */
 
 // JSON Data 
     $('#jsonbutton').bind('click', function(){
@@ -376,7 +361,7 @@ var urlVars = function(){
                       var jdata = response.giftdata[i];    
                     $(''+    
                        '<div class="gifttitle">'+
-                           '<h3>Category: '+ jdata.category +'</h3>'+
+                        '<h3>Category: '+ jdata.category +'</h3>'+
                         '<p>Gift Description: '+ jdata.comments +'</p>'+
                         '<p>Quantity: '+ jdata.amount +'</p>'+
                         '<p>Where to Buy: '+ jdata.location +'</p>'+
@@ -421,7 +406,7 @@ var urlVars = function(){
                 var date = $(this).find('date').text();
                 $(''+    
                     '<div class="gifttitle">'+
-                               '<h3>Category: '+ category +'</h3>'+
+                            '<h3>Category: '+ category +'</h3>'+
                             '<p>Gift Description: '+ comments +'</p>'+
                             '<p>Quantity: '+ amount +'</p>'+
                             '<p>Where to Buy: '+ location +'</p>'+
@@ -486,15 +471,20 @@ var urlVars = function(){
 
       });
  });
- 
-// Week Four Edit 
-    var giftID= {};   //holds the id and rev#
-    
-    var setObject = function(object)
-    
+ // Week Four Edit 
+  $('#editGift').live('pageshow', function(){
+    	console.log("edit is loaded");						
+
+        var giftID= {};   //holds the id and rev#
+    	var setObject = function(object){	
+    		console.log("setObject is: ", object);
+    		giftID._id = object._id;
+    		giftID._rev = object._rev;
+    		console.log("id is ", giftID);					
+   }; 
     var splitURL= function (){
     	var urlData = document.URL;
-    	var urlParts = urlData.splot('?');
+    	var urlParts = urlData.split('?');
     	var urlVals = urlParts[1].split('&');
     	var idVals = {};
     	for (var i in urlVals){
@@ -507,13 +497,84 @@ var urlVars = function(){
     	return(idVals[key]);  
     };
     
+    var giftToEdit = splitURL();
     
-    
-    
-    
-    
- }); //gift close
+   // Load json
 
+    var loadGift = function (myGift){
+		$.couch.db('xmasapp').openDoc(myGift, {
+			success: function(data) {
+				$('#getRidOf').remove();	
+				setObject(data);						
+        		console.log(data);
+            	$('#category').html(data.category[1]).trigger('create');
+            	$('#comments').html(data.comments[1]);
+            	$('#amount').html(data.amount[1]);
+            	$('#location').html(data.location[1]);
+            	$('#store').html(data.store[1]);
+            	$('#url').html(data.url[1]);
+            	$('#date').html(data.date[1]);
+	         }
+	    });
+    };
+    loadGift(giftToEdit);
+ // Delete function!
+    var deleteGift = function(removeID){						
+    	var idToDelete = {};									
+    	idToDelete._id = removeID._id;
+    	idToDelete._rev = removeID._rev;						
+    	console.log(idToDelete, "will remove be deleted.");			
+    	$.couch.db('xmasapp').removeDoc(idToDelete, {			
+    		success: function(data){
+    		console.log("Item deleted!");
+    		}
+    	});	
+    };
+    
+    
+    $('#remove').on("click", function(){						
+    	console.log("Do you want to remove: ", giftID);					
+    		deleteGift(giftID);			
+    		$.mobile.changePage("index.html#gift", { transition: "slideup"} );
+    	});	
+    });
+  
+}); //gift close
 
+// couchdata function
+//$('#couchbutton').bind('click', function(){
+	$('#giftPage').live('pageinit',function(){
+  	//console.log("button pressed");
+      $('#couchgifts').empty();
+      $('<p>').html('COUCH DATA IMPORT').appendTo('#couchgifts');
+      $.couch.db('xmasapp').view("xmas/gifts", {
+      	success: function(data){
+      		console.log(data);
+             $.each(data.rows, function(index,gift){
+              var id = gift.id;
+              var rev = gift.rev;
+              var test = gift.value.category;
+              console.log(test);
+              var comments = gift.value.comments;
+              var amount = gift.value.amount;
+              var location = gift.value.location;
+              var store = gift.value.store;
+              var url = gift.value.url;
+              var date = gift.value.date;
+				$('#couchgifts').append(
+						//'<h3>Category: '+ category +'</h3>'+
+						'<p>Gift Description: '+ comments +'</p>'+
+						'<p>Quantity: '+ amount +'</p>'+
+						'<p>Where to Buy: '+ location +'</p>'+
+						'<p>Store Name: '+ store +'</p>'+
+						'<p>Product URL: '+ url +'</p>'+
+						'<p>Date Added: '+ date +'</p>'
+				);
+              });//function .each
+            $('#couchgifts').listview('refresh');
+              console.log($('#giftdata'));
+          }
+      });
+  });   
 
 
