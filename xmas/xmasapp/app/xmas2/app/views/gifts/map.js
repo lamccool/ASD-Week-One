@@ -1,6 +1,6 @@
 function (doc) {
   if (doc._id.substr(0,5) === "gift:"){
-    emit(doc._id, {
+    emit(doc._id.substr(5), {
     	"category;": doc.category,
     	"comments": doc.comments,
     	"amount": doc.amount,

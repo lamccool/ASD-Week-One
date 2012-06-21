@@ -118,7 +118,7 @@
 							<a href="#" data-role="button" data-theme="b" id="csvbutton">CSV</a>
 						</div>
 						<div class="ui-block-d">
-							<a href="browse.html" data-role="button" data-theme="b" id="giftPage">Couch Data</a>
+							<a href="browse.html" data-role="button" data-theme="b" id="giftList">Couch Data</a>
 						</div>
 					</div>
 				</div>
