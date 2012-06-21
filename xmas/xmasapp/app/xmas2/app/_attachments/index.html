@@ -17,33 +17,38 @@
 	
 	<!-- StyleSheets under here -->
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
-	<link rel="stylesheet" href="css/styles.css"/>
+	<link rel="stylesheet" href="styles.css"/>
 	
 	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
-	<script src="js/libs/modernizr.custom.min.js"></script>
+	<script src="jmodernizr.custom.min.js"></script>
 
 </head>
 <body>
 	<div data-role="page" id="home" data-theme="d">	
 			<div data-role="header" data-position="fixed" data-theme="c">
 				<!--<h5>All I Want for Christmas Is...</h5>-->
-				<img src="images/main-title.gif"/>
+				<img src="main-title.gif"/>
 			</div><!-- /header -->
 			<div class="cta"id="cta">
-			<img src="images/coa.gif" id="img"/>
+			<img src="coa.gif" id="img"/>
 			</div>
 			<div data-role="content">	
 				<ul data-role="listview">
 					<li><a href="additem.html" data-ajax="false">
 						<h3>Add Item</h3>
 						<p>Add an item to your list.</p>
-						<img src="images/add-thumb.gif"/>
+						<img src="add-thumb.gif"/>
 					</a></li>
 					<li><a href="#ideas">
 						<h3>Gift Ideas</h3>
 						<p>Need some inspiration?</p>
-						<img src="images/gift.gif"/>
+						<img src="gift.gif"/>
 					</a></li>	
+					<li><a href="browse.html">
+						<h3>Gift List</h3>
+						<p>What you have so far!</p>
+						<img src="gift.gif"/>
+					</a></li>
 				</ul>	
 		
 			</div><!-- /content -->
@@ -64,7 +69,7 @@
 				<!-- /page -->
 		<div data-role="page" id="ideas" data-theme="d">	
 			<div data-role="header" data-position="fixed" data-theme="a">
-				<img src="images/main-title.gif"/>
+				<img src="main-title.gif"/>
 				<h1>Gift Ideas</h1>
 				
 			
@@ -82,22 +87,15 @@
 						<li><a href="additem.html" data-icon="plus" data-ajax="false">Add Item</a></li>
 					</ul>
 				</div>
-			</div><!-- /footer -->
+		</div><!-- /footer -->
 	
-	</div><!-- /page -->				
-</div>
-
-
-
-
-
-
-
+	</div>
+	<!-- /page -->	
 	
 	<!-- JavaScript under here -->
 	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
-	<script src="js/libs/modernizr.custom.min.js"></script>
+	<script src="modernizr.custom.min.js"></script>
 
 </body>
 </html>
