@@ -1,0 +1,56 @@
+<!doctype html> 
+<!-- RIGHT -->
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	
+	<title>All I Want for Christmas Is...</title>
+
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Mobile IE needs ClearType for smoothing fonts -->
+	<meta http-equiv="cleartype" content="on">
+	
+	<!-- StyleSheets under here -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+	<link rel="stylesheet" href="styles.css"/>
+	
+	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
+	<script src="js/libs/modernizr.custom.min.js"></script>
+
+</head>
+<body>
+<!-- page -->
+<div data-role="page" id="home" data-theme="d">	
+	<div data-role="header" data-position="fixed" data-theme="d" id="giftList">
+					<h1 id="giftList">Gift List</h1>
+				<!-- /header -->
+	</div>
+
+				<div data-role="content">	
+					<ul id="couchgifts" data-role="listview">
+					</ul>
+				</div><!-- /content -->
+
+				<div data-role="footer" data-position="fixed" data-id="home" data-theme="c">
+					<div data-role="navbar">
+						<ul>
+							<li><a href="index.html" data-icon="home">Home</a></li>
+						</ul>
+					</div>
+				</div>
+			<!-- /footer -->		
+</div>	
+	<!-- JavaScript under here -->
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+	<script src="js/libs/modernizr.custom.min.js"></script>
+	 <script type="text/javascript" src="main.js"></script>
+     <script type="text/javascript" src="jquery.couch.js"></script>
+
+</body>
+</html>
