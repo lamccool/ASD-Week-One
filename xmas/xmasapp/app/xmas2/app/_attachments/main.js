@@ -305,8 +305,8 @@ $('#gift').live('pageshow',function(){
 
 // DATA CALLS
 
-    // couchdata function
-    $('#couchbutton').bind('click', function(){
+ // couchdata function
+$('#couchbutton').bind('click', function(){
     	console.log("button pressed");
         $('#giftdata').empty();
         $('<p>').html('COUCH DATA IMPORT').appendTo('#giftdata');
@@ -344,8 +344,45 @@ $('#gift').live('pageshow',function(){
                 console.log($('#giftdata'));
             }
         });
-    });    
+    });   
+  
+$('#giftList').live('pageshow', function(){
+		$.ajax({
+			url: '_view/gifts',
+			type: 'GET',
+			dataType: 'json',
+			success: function(data){
+				console.log("Gift time!", data);
+				$.each(data.rows, function(index, gift){
+					console.log(gift.id);
+					var category = gift.value.category;
+					console.log(gift.value.comments);
+					var comments = gift.value.comments;
+					var amount = gift.value.amount;
+					var location = gift.value.location;
+					var store = gift.value.store;
+					var url = gift.value.url;
+					var date = gift.value.date;
             
+					$('#couchgifts').append('<div data-role="content">' +
+							'<h3>Category: '+ category +'</h3>'+
+							'<p>Gift Description: '+ comments +'</p>'+
+							'<p>Quantity: '+ amount +'</p>'+
+							'<p>Where to Buy: '+ location +'</p>'+
+							'<p>Store Name: '+ store +'</p>'+
+							'<p>Product URL: '+ url +'</p>'+
+							'<p>Date Added: '+ date +'</p>'
+            			'</div>');
+				});
+			},
+			error: function(result){
+				console.log("Gift" + result);
+			}
+		});
+}); 
+
+
+
 
 // JSON Data 
     $('#jsonbutton').bind('click', function(){
@@ -538,7 +575,9 @@ $('#gift').live('pageshow',function(){
     		$.mobile.changePage("index.html#gift", { transition: "slideup"} );
     	});	
     });
-    
+   
+ 
+ 
 }); //gift close
 
 

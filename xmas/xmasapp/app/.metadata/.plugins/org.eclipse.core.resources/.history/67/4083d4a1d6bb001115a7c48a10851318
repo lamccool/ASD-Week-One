@@ -2,18 +2,27 @@
 //Full Sail University
 //Laura McCool
 
-var parseGiftForm = function(data){};
 
-$('#gift').live('pageinit',function(){
-        
-    var rbform = $('#giftForm');    
-    rbform.validate({
-        invalidHandler: function(form, validator){},
-        submitHandler: function(){
-            var data = $('rbform').serializeArray();
-            parseGiftForm(data);
-        }
-    });
+$('#gift').live('pageshow',function(){
+	console.log("gift page loaded");
+    /*$.couch.db('xmasapp').view("xmas/gifts", {
+    	success: function(data){
+    		$('#giftList').empty();
+    		$.each(data.rows, function(index,value){
+    			var id = value.id;
+    			var item = (value.value || value.doc);
+    				$('#giftList').append(
+    						$('<li>').append(
+    								$('<a>').attr("href", "index.html?gift=" + id)
+    								.text(item.title)
+    				)
+    			);
+    		});
+    		$('#giftList').listview('refresh');
+    	}
+    }); */
+
+
   //var defaults
     var giftCategory = ["--Choose A Gift Category--", "Electronics", "Entertainment", "Apparel", "Music", "Books", "Etc"],
     locationValue,
@@ -64,21 +73,22 @@ $('#gift').live('pageinit',function(){
         }
     }
     
-    function storeData(key){
+    function storeData(){
+    	console.log('storeData');
     // If there is no key this means this is a brand new item and we need a new key
-        var id = id;
-    	if (!key){
+        var id;
+    	//if (!key){
             id                 = Math.floor(Math.random()*100000001);
-        }else{
+        //}else{
             //set the id to the exisiting key we're editing so that it will save over the data.
             //the key is teh same key that's been passed along from the editSubmit event handler
             //to validate function and then passed here into the storeData function
-            id = key;
-        }
+            //id = key;
+        //}
         //Gather up all our form field values and store in an object
         //Object properties contain array with the form label and input value.
-        getSelectedRadio();
-        var item                 ={};
+        //getSelectedRadio();
+        var item                 ={"_id":"gifts:"+id};
             item.category          = ["Gift Category:", $('category').value];
             item.comments          = ["Gift Description:", $('comments').value];
             item.amount          = ["Quantity:", $('amount').value];
@@ -88,10 +98,61 @@ $('#gift').live('pageinit',function(){
             item.date              = ["Date Added:", $('date').value];
         
         //Save Data in localStorage: Use Stringify to convert our object to a string.
-        localStorage.setItem(id, JSON.stringify(item));
+        //localStorage.setItem(id, JSON.stringify(item));
+            $.couch.db('xmasapp').saveDoc(item, {
+            	success: function(data) {
+            		console.log(status);
+            	}
+            });
         alert("Item Added!");
-    }
+    };
 
+    /*function validate(e){
+        //define elements we want to check
+        var getCategory = $('category');
+        var getComments = $('comments');
+        var getAmount = $('amount');
+        
+        //Reset Error Message
+        errMsg.innerHTML ="";
+        $('#getCategory').css({border: '1px solid black'});
+        $('#getComments').css({border: '1px solid black'});
+        $('#getAmount').css({border: '1px solid black'});
+        
+        //Get Error Messages
+        var messageAry = [];
+        //Category Validation
+        if (getCategory.value === "--Choose A Gift Category--"){
+            var categoryError = "Please choose a category.";
+            $('#getCategory').css({border: '1px solid red'});
+            messageAry.push(categoryError);
+        }
+        
+        //Comments validation
+        if (getComments.value === ""){
+            var commentsError = "Please include your item.";
+            $('#getComments').css({border: '1px solid red'});
+            messageAry.push(commentsError);
+        }
+        
+        //If there were errors display them on the screen
+        if(messageAry.length >= 1){
+            for(var i=0, j=messageAry.length; i < j; i++){
+                var txt = $('li');
+                txt.innerHTML = messageAry[i];
+                $('errMsg').append('txt');
+            }    
+            e.preventDefault();
+            return false;    
+        }else {
+        	console.log("form is valid");
+            //If all is well save our data. send the key value (which came from editData function
+            //remember this key value was passed thru the editSubmit event listener as a property
+            storeData(this.key);
+        }
+
+    };*/
+    
     //Get image for the right category
     function getImage(catName, makeSubList){
         var imageLi = $('li');
@@ -162,50 +223,6 @@ $('#gift').live('pageinit',function(){
         }
     }
     
-    function validate(e){
-        //define elements we want to check
-        var getCategory = $('category');
-        var getComments = $('comments');
-        var getAmount = $('amount');
-        
-        //Reset Error Message
-        errMsg.innerHTML ="";
-        $('#getCategory').css({border: '1px solid black'});
-        $('#getComments').css({border: '1px solid black'});
-        $('#getAmount').css({border: '1px solid black'});
-        
-        //Get Error Messages
-        var messageAry = [];
-        //Category Validation
-        if (getCategory.value === "--Choose A Gift Category--"){
-            var categoryError = "Please choose a category.";
-            $('#getCategory').css({border: '1px solid red'});
-            messageAry.push(categoryError);
-        }
-        
-        //Comments validation
-        if (getComments.value === ""){
-            var commentsError = "Please include your item.";
-            $('#getComments').css({border: '1px solid red'});
-            messageAry.push(commentsError);
-        }
-        
-        //If there were errors display them on the screen
-        if(messageAry.length >= 1){
-            for(var i=0, j=messageAry.length; i < j; i++){
-                var txt = $('li');
-                txt.innerHTML = messageAry[i];
-                $('errMsg').append('txt');
-            }    
-            e.preventDefault();
-            return false;    
-        }else {
-            //If all is well save our data. send the key value (which came from editData function
-            //remember this key value was passed thru the editSubmit event listener as a property
-            storeData(this.key);
-        }
-
-    };
     //Make Item Links Function
     //Create edit and delete links for each stored item when displayed
     
@@ -283,28 +300,29 @@ $('#gift').live('pageinit',function(){
     var clearData =$('#clearData');
     $('#clearData').bind("click", clearLocal);
     var saveData = $('#saveData');
-    $('#saveData').bind("click", validate);
+    $('#addNew').bind("click", storeData);
 
 
 // DATA CALLS
 
-    // couchdata function
-    $('#couchbutton').bind('click', function(){
-        $('#giftdata').empty();
+ // couchdata function
+$('#couchbutton').bind('click', function(){
+    	console.log("button pressed");
+       // $('#giftdata').empty();
         $('<p>').html('COUCH DATA IMPORT').appendTo('#giftdata');
-        $.ajax({
-            "url": "views/gifts/map.js",
-            "dataType": "js",
-            "success": function(data){
-                $.each(data.rows, function(index,gift){
+        $.couch.db('xmasapp').view("xmas/gifts", {
+        	"success": function(data){
+        		console.log(data);
+                $.each(data.rows, function(index,gift){ 
                 var category = gift.value.category;
+                console.log(gift.value.comments);
                 var comments = gift.value.comments;
                 var amount = gift.value.amount;
                 var location = gift.value.location;
                 var store = gift.value.store;
                 var url = gift.value.url;
                 var date = gift.value.date;
-                $('#giftlist').append(
+                $('#giftdata').html(
                         $('<div data-role="content">').append(
                                 $('<ul data-role="listview">').append(
                                     $('<li>').append(
@@ -314,19 +332,56 @@ $('#gift').live('pageinit',function(){
                                               '<p>Where to Buy: '+ location +'</p>'+
                                               '<p>Store Name: '+ store +'</p>'+
                                               '<p>Product URL: '+ url +'</p>'+
-                                              '<p>Date Added: '+ date +'</p>'+        
-                							)
-                							};
-                                         ) //append 4    
-                                     ) //append 3
-                                )//append 2
-                        ); //append 1
-                    })//function
-                $('#giftlist').listview('refresh');
+                                              '<p>Date Added: '+ date +'</p>'       
+                							)//.trigger('create');
+                                     ) //append 4    
+                               ) //append 3
+                        )//append 2
+                	); //append 1
+                
+                });//function .each
+                //$('#giftdata').listview('refresh');
+                console.log($('#giftdata'));
             }
         });
-    });    
+    });   
+  
+$('#giftList').live('pageshow', function(){
+		$.ajax({
+			url: '_view/gifts',
+			type: 'GET',
+			dataType: 'json',
+			success: function(data){
+				console.log("Gift time!", data);
+				$.each(data.rows, function(index, gift){
+					console.log(gift.id);
+					var category = gift.value.category;
+					console.log(gift.value.comments);
+					var comments = gift.value.comments;
+					var amount = gift.value.amount;
+					var location = gift.value.location;
+					var store = gift.value.store;
+					var url = gift.value.url;
+					var date = gift.value.date;
             
+					$('#couchgifts').append('<div data-role="content">' +
+							'<h3>Category: '+ category +'</h3>'+
+							'<p>Gift Description: '+ comments +'</p>'+
+							'<p>Quantity: '+ amount +'</p>'+
+							'<p>Where to Buy: '+ location +'</p>'+
+							'<p>Store Name: '+ store +'</p>'+
+							'<p>Product URL: '+ url +'</p>'+
+							'<p>Date Added: '+ date +'</p>'
+            			'</div>')
+				});
+			},
+			error: function(result){
+				console.log("Gift" + result);
+			}
+		});
+}); 
+
+
 
 
 // JSON Data 
@@ -352,7 +407,7 @@ $('#gift').live('pageinit',function(){
                         '<p>Date Added: '+ jdata.date +'</p>'+
                     '</div>'
                     ).appendTo('#giftdata');
-                    console.log(xml);
+                    //console.log(xml);
                  } //for loop
               }, //function    
               error: function(errormessage){
@@ -423,8 +478,8 @@ $('#gift').live('pageinit',function(){
             var lines = []; // main 
 
             for (var i=1; i<allTextLines.length; i++) {
-                var data = allTextLines[i].split(',');
-                if (data.length == headers.length) {
+                var dataTwo = allTextLines[i].split(',');
+                if (dataTwo.length == headers.length) {
                     var gifts = []; // blank
 
                     for (var j=0; j<headers.length; j++) {
@@ -449,12 +504,81 @@ $('#gift').live('pageinit',function(){
                 ).appendTo('#giftdata');
             console.log(lines);    
             } //closes for loop
-            }
+          }
 
       });
  });
+ // Week Four Edit 
+    $('#editGift').live('pageshow', function(){
+    	console.log("edit is loaded");						
+
+        var giftID= {};   //holds the id and rev#
+    	var setObject = function(object){	
+    		console.log("setObject is: ", object);
+    		giftID._id = object._id;
+    		giftID._rev = object._rev;
+    		console.log("id is ", giftID);					
+   }; 
+    var splitURL= function (){
+    	var urlData = document.URL;
+    	var urlParts = urlData.split('?');
+    	var urlVals = urlParts[1].split('&');
+    	var idVals = {};
+    	for (var i in urlVals){
+    		var keyValue = urlVals[i].split('=');
+    		var key = decodeURIComponent(keyValue[1]);
+    		idVals[key] = value;			
+    	}
+    	console.log("success on split");
+    	console.log(idVals[key]);
+    	return(idVals[key]);  
+    };
+    
+    var giftToEdit = splitURL();
+    
+   // Load json
+
+    var loadGift = function (myGift){
+		$.couch.db('xmasapp').openDoc(myGift, {
+			success: function(data) {
+				$('#getRidOf').remove();	
+				setObject(data);						
+        		console.log(data);
+            	$('#category').html(data.category[1]).trigger('create');
+            	$('#comments').html(data.comments[1]);
+            	$('#amount').html(data.amount[1]);
+            	$('#location').html(data.location[1]);
+            	$('#store').html(data.store[1]);
+            	$('#url').html(data.url[1]);
+            	$('#date').html(data.date[1]);
+	         }
+	    });
+    };
+    loadGift(giftToEdit);
+ // Delete function!
+    var deleteGift = function(removeID){						
+    	var idToDelete = {};									
+    	idToDelete._id = removeID._id;
+    	idToDelete._rev = removeID._rev;						
+    	console.log(idToDelete, "will remove be deleted.");			
+    	$.couch.db('xmasapp').removeDoc(idToDelete, {			
+    		success: function(data){
+    		console.log("Item deleted!");
+    		}
+    	});	
+    };
+    
+    
+    $('#remove').on("click", function(){						
+    	console.log("Do you want to remove: ", giftID);					
+    		deleteGift(giftID);			
+    		$.mobile.changePage("index.html#gift", { transition: "slideup"} );
+    	});	
+    });
+   
  
- }); //gift close
+ 
+}); //gift close
 
 
 
