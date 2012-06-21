@@ -315,13 +315,13 @@ $('#gift').live('pageinit',function(){
                                               '<p>Where to Buy: '+ location +'</p>'+
                                               '<p>Store Name: '+ store +'</p>'+
                                               '<p>Product URL: '+ url +'</p>'+
-                                              '<p>Date Added: '+ date +'</p>'+        
+                                              '<p>Date Added: '+ date +'</p>'       
                 							)
                                          ) //append 4    
                                      ) //append 3
                                 )//append 2
                         ); //append 1
-                    })//function
+                    });//function
                 $('#giftlist').listview('refresh');
             }
         });
@@ -352,7 +352,7 @@ $('#gift').live('pageinit',function(){
                         '<p>Date Added: '+ jdata.date +'</p>'+
                     '</div>'
                     ).appendTo('#giftdata');
-                    console.log(xml);
+                    //console.log(xml);
                  } //for loop
               }, //function    
               error: function(errormessage){
@@ -423,8 +423,8 @@ $('#gift').live('pageinit',function(){
             var lines = []; // main 
 
             for (var i=1; i<allTextLines.length; i++) {
-                var data = allTextLines[i].split(',');
-                if (data.length == headers.length) {
+                var dataTwo = allTextLines[i].split(',');
+                if (dataTwo.length == headers.length) {
                     var gifts = []; // blank
 
                     for (var j=0; j<headers.length; j++) {
