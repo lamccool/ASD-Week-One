@@ -306,14 +306,17 @@ $('#gift').live('pageshow',function(){
 // DATA CALLS
 
  // couchdata function
-$('#couchbutton').bind('click', function(){
-    	console.log("button pressed");
+//$('#couchbutton').bind('click', function(){
+    	$('#giftList').bind('pageinit',function(){
+    	//console.log("button pressed");
         $('#giftdata').empty();
         $('<p>').html('COUCH DATA IMPORT').appendTo('#giftdata');
         $.couch.db('xmasapp').view("xmas/gifts", {
         	"success": function(data){
         		console.log(data);
-                $.each(data.rows, function(index,gift){ 
+                $.each(data.rows, function(index,gift){
+                var id = gift.id;
+                var rev = gift.rev;
                 var category = gift.value.category;
                 console.log(gift.value.comments);
                 var comments = gift.value.comments;
@@ -340,13 +343,13 @@ $('#couchbutton').bind('click', function(){
                 	); //append 1
                 
                 });//function .each
-                //$('#giftdata').listview('refresh');
+                $('#giftdata').listview('refresh');
                 console.log($('#giftdata'));
             }
         });
     });   
   
-$('#giftList').live('pageshow', function(){
+/*$('#giftList').live('pageshow', function(){
 		$.ajax({
 			url: '_view/gifts',
 			type: 'GET',
@@ -379,7 +382,7 @@ $('#giftList').live('pageshow', function(){
 				console.log("Gift" + result);
 			}
 		});
-}); 
+}); */
 
 
 
@@ -398,7 +401,7 @@ $('#giftList').live('pageshow', function(){
                       var jdata = response.giftdata[i];    
                     $(''+    
                        '<div class="gifttitle">'+
-                           '<h3>Category: '+ jdata.category +'</h3>'+
+                        '<h3>Category: '+ jdata.category +'</h3>'+
                         '<p>Gift Description: '+ jdata.comments +'</p>'+
                         '<p>Quantity: '+ jdata.amount +'</p>'+
                         '<p>Where to Buy: '+ jdata.location +'</p>'+
@@ -509,7 +512,7 @@ $('#giftList').live('pageshow', function(){
       });
  });
  // Week Four Edit 
-    $('#editGift').live('pageshow', function(){
+  $('#editGift').live('pageshow', function(){
     	console.log("edit is loaded");						
 
         var giftID= {};   //holds the id and rev#

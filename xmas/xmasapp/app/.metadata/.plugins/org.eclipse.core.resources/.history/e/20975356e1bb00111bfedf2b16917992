@@ -123,7 +123,7 @@
 					</div>
 				</div>
 			</div>
-            <div id="giftdata" data-role="listview"></div>
+            <div id="giftdata"></div>
             <!-- content -->
             <div data-role="footer" data-position="fixed" data-id="home" data-theme="a">
                 <div data-role="navbar">

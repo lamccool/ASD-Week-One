@@ -118,12 +118,12 @@
 							<a href="#" data-role="button" data-theme="b" id="csvbutton">CSV</a>
 						</div>
 						<div class="ui-block-d">
-							<a href="browse.html" data-role="button" data-theme="b" id="giftList">Couch Data</a>
+							<a href="#" data-role="button" data-theme="b" id="couchbutton">Couch Data</a>
 						</div>
 					</div>
 				</div>
 			</div>
-            <div id="giftdata" data-role="listview"></div>
+            <div id="giftdata"></div>
             <!-- content -->
             <div data-role="footer" data-position="fixed" data-id="home" data-theme="a">
                 <div data-role="navbar">
