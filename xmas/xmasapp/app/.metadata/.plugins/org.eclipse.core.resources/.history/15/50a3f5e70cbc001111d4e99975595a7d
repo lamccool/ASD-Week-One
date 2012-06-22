@@ -9,12 +9,12 @@
     	var id;
     		
     		if (!key){  
-    	id                 = "gifts:"+ Math.floor(Math.random()*100000001);
+    	id                 = Math.floor(Math.random()*100000001);
         }else{
         	id = key;
     	}
         
-    	var item                   ={};
+    	var item                   ={"_id":"gifts:"+id};
         	item._id 			   = id;
         	item._rev 		       = rev;
         	item.category          = ["Gift Category:", $('category').value];
@@ -89,7 +89,7 @@ $('#page').bind('pageinit',function(){
     };*/
     
    
-   /*function clearLocal(){
+    function clearLocal(){
         if(localStorage.length === 0){
             alert("There is no data to clear.");
         }else{ 
@@ -225,7 +225,7 @@ $('#page').bind('pageinit',function(){
           }
 
       });
- }); //gift close*/
+ }); //gift close
 
 // couchdata function
 //$('#couchbutton').bind('click', function(){
@@ -241,43 +241,42 @@ $('#page').bind('pageinit',function(){
               console.log(id);
               var rev = gift.value.revision;
                         
-      var editLink = $('<a>Edit</a>').attr({href:'additem.html', id:id});
+      var editLink = $('<a>Edit</a>').attr({href:'#', id:id});
 		// Edit link event listenener
 		editLink.bind('click',function () {
 			$('#displayData').hide();
 			$('#clearData').hide();
 		     //category 
-			$('category').value = gift.value.category;
+			$('category').value = gift.value.category[1];
 			$('#category').button();
 		     // gift
-		    $('comments').value = gift.value.comments;
+		    $('comments').value = gift.value.comments[1];
 	        $('#comments').textinput();
 	         // quantity
-	        $('amount').value = gift.value.amount;
+	        $('amount').value = gift.value.amount[1];
 	        $('#amount').val(80).slider('refresh');
 	          
 	      // radio buttons: location online or store
-	          	if (gift.value.location === "online") {
+	          	if (gift.value.location[1] === "online") {
 					$('#online').attr('checked',true);
 				}
-				else if (gift.value.location === "store") {
+				else if (gift.value.location[1] === "store") {
 					$('#store').attr('checked',true);
 				};
 		    //store name
-		    $('store').value = gift.value.store;
+		    $('store').value = gift.value.store[1];
 		    $('#store').textinput();
 		    // url
-		    $('url').value = gift.value.url;
+		    $('url').value = gift.value.url[1];
 		    $('#url').textinput();
 		    //date
-		    $('date').value = gift.value.date;
+		    $('date').value = gift.value.date[1];
 		    $('#date').textinput();
 	          
 	          
 			// submit button for edit mode
 			$('#submit').html("Save Item Changes");
-			$('#submit').unbind('click');
-			$('#submit').bind("click", function (){storeData(id,rev);});
+			$('#submit').die('click');
 			$('#submit').button('refresh');
 		});
 		
@@ -291,18 +290,17 @@ $('#page').bind('pageinit',function(){
 			}
 			else{
 				alert("Item was NOT deleted.");
-				console.log(id);
 			};
 		});
 
 	$('#couchgifts').append(
-				'<h3>Category: '+ gift.value.category +'</h3>'+
-				'<p>Gift Description: '+ gift.value.comments +'</p>'+
-				'<p>Quantity: '+ gift.value.amount +'</p>'+
-				'<p>Where to Buy: '+ gift.value.location +'</p>'+
-				'<p>Store Name: '+ gift.value.store +'</p>'+
-				'<p>Product URL: '+ gift.value.url +'</p>'+
-				'<p>Date Added: '+ gift.value.date +'</p>'
+				'<h3>Category: '+ category +'</h3>'+
+				'<p>Gift Description: '+ comments +'</p>'+
+				'<p>Quantity: '+ amount +'</p>'+
+				'<p>Where to Buy: '+ location +'</p>'+
+				'<p>Store Name: '+ store +'</p>'+
+				'<p>Product URL: '+ url +'</p>'+
+				'<p>Date Added: '+ date +'</p>'
 		).append(editLink).append('<br/>').append(deleteLink);
       });//function .each
     $('#couchgifts').listview('refresh');

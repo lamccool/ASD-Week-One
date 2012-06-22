@@ -241,7 +241,7 @@ $('#page').bind('pageinit',function(){
               console.log(id);
               var rev = gift.value.revision;
                         
-      var editLink = $('<a>Edit</a>').attr({href:'additem.html', id:id});
+      var editLink = $('<a>Edit</a>').attr({href:'#', id:id});
 		// Edit link event listenener
 		editLink.bind('click',function () {
 			$('#displayData').hide();

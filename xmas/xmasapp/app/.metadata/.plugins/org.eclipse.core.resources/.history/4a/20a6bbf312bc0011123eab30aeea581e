@@ -1,0 +1,139 @@
+//Mobile Media Development
+//Full Sail University
+//Laura McCool
+
+  
+     function storeData(key,rev){
+        console.log('storeData');
+    // If there is no key this means this is a brand new item and we need a new key
+        var id;
+        if (!key){
+            id                 = 'gifts:' +  Math.floor(Math.random()*100000001);
+        }else{
+            //set the id to the exisiting key we're editing so that it will save over the data.
+            //the key is teh same key that's been passed along from the editSubmit event handler
+            //to validate function and then passed here into the storeData function
+            id = key;
+        };
+        //Gather up all our form field values and store in an object
+        //Object properties contain array with the form label and input value.
+        //getSelectedRadio();
+        var item                   ={};
+            item.id                = id;
+            item.rev                = rev;
+            item.category          = ["Gift Category:", $('category').value];
+            item.comments          = ["Gift Description:", $('comments').value];
+            item.amount            = ["Quantity:", $('amount').value];
+            item.location          = ["Where To Buy:", $('locationValue').value];
+            item.store             = ["Store Name:", $('store').value];
+            item.url               = ["Product Url:", $('url').value];
+            item.date              = ["Date Added:", $('date').value];
+        
+        //Save Data in localStorage: Use Stringify to convert our object to a string.
+        //localStorage.setItem(id, JSON.stringify(item));
+            $.couch.db('xmasapp').saveDoc(item, {
+                success: function(data) {
+                    console.log(item); 
+                    alert("Item Added!");
+                }
+            });
+    };
+    
+$('#gift').bind('pageinit',function(){
+    $('#submit').bind("click", function (){
+                      storeData();
+    });
+});
+
+
+// couchdata function
+//$('#couchbutton').bind('click', function(){
+    $('#giftPage').bind('pageinit',function(){
+      //console.log("button pressed");
+      $('#couchgifts').empty();
+      $('<p>').html('COUCH DATA IMPORT').appendTo('#couchgifts');
+      $.couch.db('xmasapp').view("xmas/gifts", {
+          success: function(data){
+              console.log(data);
+             $.each(data.rows, function(index,gift){
+              var id = gift.id;
+              console.log(id);
+              var rev = gift.value.revision;
+         
+
+             
+      var editLink = $('<a>Edit</a>').attr({href:'#', id:id});
+        // Edit link event listenener
+        editLink.bind('click',function () {
+            $('#displayData').hide();
+            $('#clearData').hide();
+             //category 
+            $('category').value = gift.value.category;
+            $('#category').textinput();
+             // gift
+            $('comments').value = gift.value.comments;
+            $('#comments').textinput();
+             // quantity
+            $('amount').value = gift.value.amount;
+            $('#amount').val(80).slider('refresh');
+
+          // radio buttons: location online or store
+                  if (gift.value.location === "online") {
+                    $('#online').attr('checked',true);
+                }
+                else if (gift.value.location[1] === "store") {
+                    $('#store').attr('checked',true);
+                };
+            //store name
+            $('store').value = gift.value.store;
+            $('#store').textinput();
+            // url
+            $('url').value = gift.value.url;
+            $('#url').textinput();
+            //date
+            $('date').value = gift.value.date;
+            $('#date').textinput();
+
+
+            // submit button for edit mode
+            $('#submit').html("Save Item Changes");
+            $('#submit').unbind('click');
+            $('#submit').bind('click', function () {
+                storeData(id, rev);
+            });
+            $('#submit').button('refresh');
+        });
+
+        var deleteLink = $('<a>Delete Item</a>').attr({href:'#', id:id});
+        deleteLink.on('click',function () {
+            var ask = confirm("Are you sure you want to delete this item?");
+            if (ask){
+                $.couch.db('xmasapp').removeDoc({_id:id, _rev:rev});
+                alert("Item was deleted.");
+                $.mobile.changePage('#giftPage');        
+            }
+            else{
+                alert("Item was NOT deleted.");
+            };
+        });
+
+    $('#couchgifts').append(
+                '<h3>Category: '+ gift.value.category +'</h3>'+
+                '<p>Gift Description: '+ gift.value.comments +'</p>'+
+                '<p>Quantity: '+ gift.value.amount +'</p>'+
+                '<p>Where to Buy: '+ gift.value.location +'</p>'+
+                '<p>Store Name: '+ gift.value.store +'</p>'+
+                '<p>Product URL: '+ gift.value.url +'</p>'+
+                '<p>Date Added: '+ gift.value.date +'</p>'
+        ).append(editLink).append('<br/>').append(deleteLink);
+      });//function .each
+    $('#couchgifts').listview('refresh');
+      console.log($('#giftdata'));
+          }
+      });
+          });
+          
+          
+          
+          
+          

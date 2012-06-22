@@ -9,7 +9,7 @@
     	var id;
     		
     		if (!key){  
-    	id                 = "gifts:"+ Math.floor(Math.random()*100000001);
+    	id                 = {"gifts:"+ Math.floor(Math.random()*100000001)};
         }else{
         	id = key;
     	}
@@ -89,7 +89,7 @@ $('#page').bind('pageinit',function(){
     };*/
     
    
-   /*function clearLocal(){
+    function clearLocal(){
         if(localStorage.length === 0){
             alert("There is no data to clear.");
         }else{ 
@@ -225,7 +225,7 @@ $('#page').bind('pageinit',function(){
           }
 
       });
- }); //gift close*/
+ }); //gift close
 
 // couchdata function
 //$('#couchbutton').bind('click', function(){
@@ -241,7 +241,7 @@ $('#page').bind('pageinit',function(){
               console.log(id);
               var rev = gift.value.revision;
                         
-      var editLink = $('<a>Edit</a>').attr({href:'additem.html', id:id});
+      var editLink = $('<a>Edit</a>').attr({href:'#', id:id});
 		// Edit link event listenener
 		editLink.bind('click',function () {
 			$('#displayData').hide();
@@ -276,8 +276,7 @@ $('#page').bind('pageinit',function(){
 	          
 			// submit button for edit mode
 			$('#submit').html("Save Item Changes");
-			$('#submit').unbind('click');
-			$('#submit').bind("click", function (){storeData(id,rev);});
+			$('#submit').die('click');
 			$('#submit').button('refresh');
 		});
 		
@@ -291,7 +290,6 @@ $('#page').bind('pageinit',function(){
 			}
 			else{
 				alert("Item was NOT deleted.");
-				console.log(id);
 			};
 		});
 
