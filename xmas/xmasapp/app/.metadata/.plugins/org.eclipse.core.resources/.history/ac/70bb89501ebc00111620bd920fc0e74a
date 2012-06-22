@@ -95,10 +95,13 @@
                     />
                 </div>
                 <div data-role="fieldcontain">
-                    <input type="submit" id="submit" value="Add it to the list!" data-theme="a" />
+                    <input type="submit" id= "submit" value="Add it to the list!" data-theme="a" />
                     <input type="reset" value="Reset Form" />
                 </div>
             </form>
+            <nav1>
+                <a  id="addNew" style="display:none;">Add New Item</a>
+            </nav1>
            		<div id="getdata" data-role="fieldcontain">
 				<div id="get-data-buttons">
 					<div class="ui-grid-b">
@@ -118,6 +121,7 @@
 					</div>
 				</div>
 			</div>
+            <div id="giftdata" data-role="listview"></div>
             <!-- content -->
             <div data-role="footer" data-position="fixed" data-id="home" data-theme="a">
                 <div data-role="navbar">

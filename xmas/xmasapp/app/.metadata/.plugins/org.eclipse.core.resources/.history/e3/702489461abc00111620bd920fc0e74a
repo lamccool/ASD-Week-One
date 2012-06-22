@@ -17,25 +17,26 @@
     	var item                   ={};
         	item._id 			   = id;
         	item._rev 		       = rev;
-        	item.category          = ["Gift Category:", $('#category').val()];
-            item.comments          = ["Gift Description:", $('#comments').val()];
-            item.amount            = ["Quantity:", $('#amount').val()];
-            item.location          = ["Where To Buy:", $('input:radio[name="locations"]:checked').val()];
-            item.store             = ["Store Name:", $('#store').val()];
-            item.url               = ["Product Url:", $('#url').val()];
-            item.date              = ["Date Added:", $('#date').val()];
+        	item.category          = ["Gift Category:", $('category').value];
+            item.comments          = ["Gift Description:", $('comments').value];
+            item.amount            = ["Quantity:", $('amount').value];
+            item.location          = ["Where To Buy:", $('locationValue').value];
+            item.store             = ["Store Name:", $('store').value];
+            item.url               = ["Product Url:", $('url').value];
+            item.date              = ["Date Added:", $('date').value];
         
         //Save Data in localStorage: Use Stringify to convert our object to a string.
         //localStorage.setItem(id, JSON.stringify(item));
             $.couch.db('xmasapp').saveDoc(item, {
             	success: function(data) {
+            		console.log(status);
                     alert("Item Added!");
             	}
             });
 
   };
     
-$('#page').bind('pageshow',function(){
+$('#page').bind('pageinit',function(){
 	    $('#submit').bind("click", function (){
 	                      storeData();
 	});
@@ -228,7 +229,7 @@ $('#page').bind('pageshow',function(){
 
 // couchdata function
 //$('#couchbutton').bind('click', function(){
-	$('#giftPage').bind('pageshow',function(){
+	$('#giftPage').bind('pageinit',function(){
   	//console.log("button pressed");
       $('#couchgifts').empty();
       $('<p>').html('COUCH DATA IMPORT').appendTo('#couchgifts');

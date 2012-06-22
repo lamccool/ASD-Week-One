@@ -17,13 +17,13 @@
     	var item                   ={};
         	item._id 			   = id;
         	item._rev 		       = rev;
-        	item.category          = ["Gift Category:", $('#category').val()];
-            item.comments          = ["Gift Description:", $('#comments').val()];
-            item.amount            = ["Quantity:", $('#amount').val()];
-            item.location          = ["Where To Buy:", $('input:radio[name="locations"]:checked').val()];
-            item.store             = ["Store Name:", $('#store').val()];
-            item.url               = ["Product Url:", $('#url').val()];
-            item.date              = ["Date Added:", $('#date').val()];
+        	item.category          = ["Gift Category:", $('category').value];
+            item.comments          = ["Gift Description:", $('comments').value];
+            item.amount            = ["Quantity:", $('amount').value];
+            item.location          = ["Where To Buy:", $('locationValue').value];
+            item.store             = ["Store Name:", $('store').value];
+            item.url               = ["Product Url:", $('url').value];
+            item.date              = ["Date Added:", $('date').value];
         
         //Save Data in localStorage: Use Stringify to convert our object to a string.
         //localStorage.setItem(id, JSON.stringify(item));

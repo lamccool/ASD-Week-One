@@ -95,7 +95,7 @@
                     />
                 </div>
                 <div data-role="fieldcontain">
-                    <input type="submit" id="submit" value="Add it to the list!" data-theme="a" />
+                    <input type="submit" id= "submit" value="Add it to the list!" data-theme="a" />
                     <input type="reset" value="Reset Form" />
                 </div>
             </form>
