@@ -215,13 +215,13 @@ $('#gift').bind('pageshow',function(){
         }
     }
  */   
-    //set link and click events
+   //set link and click events
    // var displayData = $('#displayData');
    // $('#displayData').bind("click", getData);
-    var clearData =$('#clearData');
-    $('#clearData').bind("click", clearLocal);
-    var saveData = $('#saveData');
-    $('#addNew').bind("click", storeData);
+   // var clearData =$('#clearData');
+   //$('#clearData').bind("click", clearLocal);
+   var saveData = $('#saveData');
+   $('#addNew').bind("click", storeData);
 
 
 // DATA CALLS
@@ -409,63 +409,51 @@ $('#gift').bind('pageshow',function(){
               var store = gift.value.store;
               var url = gift.value.url;
               var date = gift.value.date;
-				$('#couchgifts').append(
-						'<h3>Category: '+ category +'</h3>'+
-						'<p>Gift Description: '+ comments +'</p>'+
-						'<p>Quantity: '+ amount +'</p>'+
-						'<p>Where to Buy: '+ location +'</p>'+
-						'<p>Store Name: '+ store +'</p>'+
-						'<p>Product URL: '+ url +'</p>'+
-						'<p>Date Added: '+ date +'</p>'
-				);
-              });//function .each
-            $('#couchgifts').listview('refresh');
-              console.log($('#giftdata'));
-          }
-      });
+
+             
       var editLink = $('<a>Edit</a>').attr({href:'#', id:id});
 		// Edit link event listenener
 		editLink.bind('click',function () {
 			$('#displayData').hide();
 			$('#clearData').hide();
-		      
+		     //category 
 			$('category').value = item.category[1];
 			$('#category').textinput();
-		      
-		    $('comments').value = gifts.value.comments[1];
+		     // gift
+		    $('comments').value = gift.value.comments[1];
 	        $('#comments').textinput();
-	          
-	        $('amount').value = gifts.value.amount[1];
+	         // quantity
+	        $('amount').value = gift.value.amount[1];
 	        $('#amount').val(80).slider('refresh');
 	          
-	      // radio buttons
-	          	if (gifts.value.location[1] === "online") {
+	      // radio buttons: location online or store
+	          	if (gift.value.location[1] === "online") {
 					$('#online').attr('checked',true);
 				}
-				else if (gifts.value.location[1] === "store") {
+				else if (gift.value.location[1] === "store") {
 					$('#store').attr('checked',true);
 				};
-		    $('store').value = gifts.value.store[1];
+		    //store name
+		    $('store').value = gift.value.store[1];
 		    $('#store').textinput();
-		    
-		    $('url').value = gifts.value.url[1];
+		    // url
+		    $('url').value = gift.value.url[1];
 		    $('#url').textinput();
-		    
-		    $('date').value = gifts.value.date[1];
+		    //date
+		    $('date').value = gift.value.date[1];
 		    $('#date').textinput();
 	          
 	          
-			// change eventListener for submit button for edit mode
+			// submit button for edit mode
 			$('#submit').html("Save Item Changes");
 			$('#submit').die('click');
 			$('#submit').bind('click', function () {
-				storeData(id, rev);
+				saveData(id, rev);
 			});
 			$('#submit').button('refresh');
 		});
 		
-
-		var deleteLink = $('<a>Delete</a>').attr({href:'#', id:id});
+		var deleteLink = $('<a>Delete Item</a>').attr({href:'#', id:id});
 		deleteLink.on('click',function () {
 			var ask = confirm("Are you sure you want to delete this item?");
 			if (ask){
@@ -477,50 +465,28 @@ $('#gift').bind('pageshow',function(){
 				alert("Item was NOT deleted.");
 			};
 		});
-		var imageLi =  $('<li></li>');
-		var newImage = $('<img/>').attr({"src"+ catName +".png"});
-		newImage.appendTo(imageLi);
-		//place the edit and delete link in a listitem
-		linksLi.append(editLink).append('<br/>').append(deleteLink);
-		// appending everything to the storageList
-		$('<li></li>').append(imageLi).append(itemList).append(linksLi).appendTo('#couchgifts');
-	});
-	$('#storageList').listview('refresh');
+
+	$('#couchgifts').append(
+				'<h3>Category: '+ category +'</h3>'+
+				'<p>Gift Description: '+ comments +'</p>'+
+				'<p>Quantity: '+ amount +'</p>'+
+				'<p>Where to Buy: '+ location +'</p>'+
+				'<p>Store Name: '+ store +'</p>'+
+				'<p>Product URL: '+ url +'</p>'+
+				'<p>Date Added: '+ date +'</p>'
+		).append(editLink).append('<br/>').append(deleteLink);
+      });//function .each
+    $('#couchgifts').listview('refresh');
+      console.log($('#giftdata'));
+      	};
+      };
+      	});
 }
 });
 };
-// ----------------------------------------
-
-// Run display function --- data populate data when page is loaded
+});
 display();
 });
-
-      
-      function makeItemLinks (key, linksLi){
-      //add edit single item link
-          var editLink = $('a');
-          editLink.href = "#";
-          editLink.key = key;
-          var editText ="Edit List";
-          $('#editLink').bind("click", editItem);
-          //editLink.addEventListener("click", editItem);
-          editLink.innerHTML = editText;
-          $('linksLi').append('editLink');
-          
-          //add line break
-          var breakTag = $('br');
-          $('linksLi').append('breakTag');
-          
-          //delete single item link
-          var deleteLink = $('a');
-          deleteLink.href = "#";
-          deleteLink.key = key;
-          var deleteText = "Delete Item";
-          $('#deleteLink').bind("click", deleteItem);
-          //deleteLink.addEventListener("click", deleteItem);
-          deleteLink.innerHTML = deleteText;
-          $('linksLi').append('deleteLink');
-      }	
       
 });   // page end
 

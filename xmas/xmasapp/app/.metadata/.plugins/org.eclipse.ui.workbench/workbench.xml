@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="15" version="2.0">
 <workbenchAdvisor/>
-<window height="823" width="1083" x="89" y="51">
+<window height="823" width="1083" x="97" y="70">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -46,7 +46,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="main.js" partName="main.js" path="/Users/Laura/github/local/ASD-Week-One/xmas/xmasapp/app/xmas2/app/_attachments/main.js" title="main.js" tooltip="xmas2/app/_attachments/main.js" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/xmas2/app/_attachments/main.js"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="17619" selectionTopPixel="6719"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3150" selectionTopPixel="6716"/>
 </editor>
 <editor id="org.eclipse.wst.html.core.htmlsource.source" name="index.html" partName="index.html" path="/Users/Laura/github/local/ASD-Week-One/xmas/xmasapp/app/xmas2/app/_attachments/index.html" title="index.html" tooltip="xmas2/app/_attachments/index.html" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/xmas2/app/_attachments/index.html"/>
@@ -80,7 +80,7 @@
 <element path="/xmas2/app/views/gifts"/>
 </expanded>
 <selection>
-<element path="/xmas2"/>
+<element path="/xmas2/app/_attachments/data.csv"/>
 </selection>
 </viewState>
 </view>
