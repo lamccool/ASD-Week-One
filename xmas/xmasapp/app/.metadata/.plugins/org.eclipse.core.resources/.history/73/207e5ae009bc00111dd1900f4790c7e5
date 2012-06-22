@@ -26,8 +26,7 @@
 <body>
 <!-- page -->
 <div data-role="page" id="giftPage" data-theme="d">	
-	<div data-role="header" data-position="fixed" data-theme="a" id="giftLift">
-					<img src="main-title.gif"/>
+	<div data-role="header" data-position="fixed" data-theme="d" id="giftLift">
 					<h1 id="giftList">Gift List</h1>
 				<!-- /header -->
 	</div>

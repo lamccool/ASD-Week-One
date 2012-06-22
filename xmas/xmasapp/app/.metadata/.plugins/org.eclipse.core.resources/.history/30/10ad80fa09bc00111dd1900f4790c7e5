@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div data-role="page" id="home" data-theme="d">	
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="c">
 				<!--<h5>All I Want for Christmas Is...</h5>-->
 				<img src="main-title.gif"/>
 			</div><!-- /header -->

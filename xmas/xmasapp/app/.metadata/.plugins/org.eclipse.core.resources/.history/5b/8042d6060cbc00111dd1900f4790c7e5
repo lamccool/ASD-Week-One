@@ -256,7 +256,7 @@ $('#page').bind('pageinit',function(){
 			$('#displayData').hide();
 			$('#clearData').hide();
 		     //category 
-			$('category').value = gift.value.category[1];
+			$('category').value = gift.category[1];
 			$('#category').button();
 		     // gift
 		    $('comments').value = gift.value.comments[1];

@@ -26,8 +26,7 @@
 <body>
 <!-- page -->
 <div data-role="page" id="giftPage" data-theme="d">	
-	<div data-role="header" data-position="fixed" data-theme="a" id="giftLift">
-					<img src="main-title.gif"/>
+	<div data-role="header" data-position="fixed" data-theme="d" id="giftLift">
 					<h1 id="giftList">Gift List</h1>
 				<!-- /header -->
 	</div>
@@ -37,7 +36,7 @@
 					</ul>
 				</div><!-- /content -->
 
-				<div data-role="footer" data-position="fixed" data-id="home" data-theme="a">
+				<div data-role="footer" data-position="fixed" data-id="home" data-theme="c">
 					<div data-role="navbar">
 						<ul>
 							<li><a href="index.html" data-icon="home">Home</a></li>

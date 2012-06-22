@@ -3,29 +3,30 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="243" key="DIALOG_WIDTH"/>
 		<item value="0" key="DIALOG_Y_ORIGIN"/>
-		<item value="379" key="DIALOG_HEIGHT"/>
 		<item value="883" key="DIALOG_X_ORIGIN"/>
+		<item value="379" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="gifts" key="selection"/>
+		<item value=".category" key="selection"/>
 		<list key="findhistory">
-			<item value="gifts"/>
-			<item value="addnew"/>
-			<item value="savedata"/>
-			<item value="savaData"/>
-			<item value="delete"/>
-			<item value="radio"/>
-			<item value="asd"/>
-			<item value="autobox"/>
+			<item value=".category"/>
+			<item value="category"/>
+			<item value="added"/>
+			<item value="item was"/>
+			<item value="item "/>
+			<item value="submit"/>
+			<item value="title2"/>
+			<item value="title"/>
 		</list>
 		<list key="replacehistory">
 			<item value=".bind"/>
+			<item value="store"/>
 		</list>
 	</section>
 </section>

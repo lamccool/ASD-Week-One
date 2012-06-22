@@ -31,7 +31,7 @@
             </hgroup>
         </header>
         <div data-role="page" id="gift" data-theme="d">
-            <div data-role="header" data-position="fixed" data-theme="a">
+            <div data-role="header" data-position="fixed" data-theme="c">
                 <!--<h5>All I Want for Christmas Is...</h5>-->
                 <img src="main-title.gif" />
             </div>
@@ -95,11 +95,13 @@
                     />
                 </div>
                 <div data-role="fieldcontain">
-                    <input type="submit" id= "submit" value="Add it to the list!" data-theme="a" />
+                    <input type="submit" value="Add it to the list!" data-theme="a" />
                     <input type="reset" value="Reset Form" />
                 </div>
             </form>
             <nav1>
+                <a href="#" id="displayData">View Your List</a>
+                <a href="#" id="clear"> Delete Your List</a>
                 <a  id="addNew" style="display:none;">Add New Item</a>
             </nav1>
            		<div id="getdata" data-role="fieldcontain">
