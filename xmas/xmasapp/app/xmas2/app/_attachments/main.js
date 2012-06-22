@@ -9,12 +9,12 @@
     	var id;
     		
     		if (!key){  
-    	id                 = Math.floor(Math.random()*100000001);
+    	id                 = {"gifts:"+ Math.floor(Math.random()*100000001)};
         }else{
         	id = key;
     	}
         
-    	var item                   ={"_id":"gifts:"+id};
+    	var item                   ={};
         	item._id 			   = id;
         	item._rev 		       = rev;
         	item.category          = ["Gift Category:", $('category').value];
@@ -240,46 +240,37 @@ $('#page').bind('pageinit',function(){
               var id = gift.id;
               console.log(id);
               var rev = gift.value.revision;
-              var category = gift.value.category;
-              console.log(gift.value.category);
-              var comments = gift.value.comments;
-              var amount = gift.value.amount;
-              var location = gift.value.location;
-              var store = gift.value.store;
-              var url = gift.value.url;
-              var date = gift.value.date;
-
-             
+                        
       var editLink = $('<a>Edit</a>').attr({href:'#', id:id});
 		// Edit link event listenener
 		editLink.bind('click',function () {
 			$('#displayData').hide();
 			$('#clearData').hide();
 		     //category 
-			$('category').value = gift.value.category[1];
+			$('category').value = gift.value.category;
 			$('#category').button();
 		     // gift
-		    $('comments').value = gift.value.comments[1];
+		    $('comments').value = gift.value.comments;
 	        $('#comments').textinput();
 	         // quantity
-	        $('amount').value = gift.value.amount[1];
+	        $('amount').value = gift.value.amount;
 	        $('#amount').val(80).slider('refresh');
 	          
 	      // radio buttons: location online or store
-	          	if (gift.value.location[1] === "online") {
+	          	if (gift.value.location === "online") {
 					$('#online').attr('checked',true);
 				}
-				else if (gift.value.location[1] === "store") {
+				else if (gift.value.location === "store") {
 					$('#store').attr('checked',true);
 				};
 		    //store name
-		    $('store').value = gift.value.store[1];
+		    $('store').value = gift.value.store;
 		    $('#store').textinput();
 		    // url
-		    $('url').value = gift.value.url[1];
+		    $('url').value = gift.value.url;
 		    $('#url').textinput();
 		    //date
-		    $('date').value = gift.value.date[1];
+		    $('date').value = gift.value.date;
 		    $('#date').textinput();
 	          
 	          
@@ -303,13 +294,13 @@ $('#page').bind('pageinit',function(){
 		});
 
 	$('#couchgifts').append(
-				'<h3>Category: '+ category +'</h3>'+
-				'<p>Gift Description: '+ comments +'</p>'+
-				'<p>Quantity: '+ amount +'</p>'+
-				'<p>Where to Buy: '+ location +'</p>'+
-				'<p>Store Name: '+ store +'</p>'+
-				'<p>Product URL: '+ url +'</p>'+
-				'<p>Date Added: '+ date +'</p>'
+				'<h3>Category: '+ gift.value.category +'</h3>'+
+				'<p>Gift Description: '+ gift.value.comments +'</p>'+
+				'<p>Quantity: '+ gift.value.amount +'</p>'+
+				'<p>Where to Buy: '+ gift.value.location +'</p>'+
+				'<p>Store Name: '+ gift.value.store +'</p>'+
+				'<p>Product URL: '+ gift.value.url +'</p>'+
+				'<p>Date Added: '+ gift.value.date +'</p>'
 		).append(editLink).append('<br/>').append(deleteLink);
       });//function .each
     $('#couchgifts').listview('refresh');
