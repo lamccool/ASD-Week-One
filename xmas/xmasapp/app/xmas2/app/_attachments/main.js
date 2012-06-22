@@ -2,8 +2,28 @@
 //Full Sail University
 //Laura McCool
 
+    
+function toggleControls(n){
+        switch(n){
+            case "on":
+                $('#giftForm').hide();
+                $('#clear').css('display','inline');
+                $('#displayData').hide();
+                $('#addNew').css('display','inline');
+                break;
+            case "off":
+                $('#giftForm').show();
+                $('#clear').css('display', 'inline');
+                $('#displayData').css('display', 'inline');
+                $('#addNew').hide();
+                $('#items').hide();
+                break;
+            default:
+                return false;
+        }
+    };
 
-$('#gift').live('pageshow',function(){
+$('#gift').bind('pageshow',function(){
 	console.log("gift page loaded");
 	$.couch.db('xmasapp').view('xmas/gifts',{
 			success: function(data) {
@@ -57,27 +77,7 @@ $('#gift').live('pageshow',function(){
             }
         }
     }
-    
-    function toggleControls(n){
-        switch(n){
-            case "on":
-                $('#giftForm').hide();
-                $('#clear').css('display','inline');
-                $('#displayData').hide();
-                $('#addNew').css('display','inline');
-                break;
-            case "off":
-                $('#giftForm').show();
-                $('#clear').css('display', 'inline');
-                $('#displayData').css('display', 'inline');
-                $('#addNew').hide();
-                $('#items').hide();
-                break;
-            default:
-                return false;
-        }
-    }
-    
+
     function storeData(){
     	console.log('storeData');
     // If there is no key this means this is a brand new item and we need a new key
@@ -160,64 +160,7 @@ $('#gift').live('pageshow',function(){
 
     };*/
     
-    //Get image for the right category
-    function getImage(catName, makeSubList){
-        var imageLi = $('li');
-        $('makeSubList').append('imageLi');
-        var newImg = $('img');
-        var setSrc = $('#newImg').attr("src","images/"+ catName +".png");  
-        $('imageLi').append('newImg');
-    }
  
-
-    
-    function editItem (){
-        //grab date from local storage
-        var value = localStorage.getItem(this.key);
-        var item = JSON.parse(value);
-        
-        //show form
-        toggleControls("off");
-        
-        //populate form fields with current local storage values
-        $('category').value = item.category[1];
-        $('comments').value = item.comments[1];
-        $('amount').value = item.amount[1];
-        var radios = document.forms[0].location;
-        for(var i=0; i<radios.length; i++){
-            if(radios.value == "online" && item.location[1] == "online"){
-                    radios[i].setAttribute("checked", "checked");
-                } else if (radios[i].value == "store" && item.location[1] == "store"){
-                    radios[i].setAttribute("checked", "checked");
-                }
-        }
-        //$('location').value = item.location[1];
-        $('store').value = item.store[1];
-        $('url').value = item.url[1];
-        $('date').value = item.date[1];
-        
-        //remove the initial listener from input 'save contact' button
-        $('#submit').die('click');
-        //Change submit button value to say edit button
-        $('submit').value = "Edit List";
-        var editSubmit = $('submit');
-        //save the key value established in this function as a property of the editSubmit event
-        //so we can use that value when we save the date we edited 
-        //editSubmit.addEventListener("click", validate);
-        $('#editSubmit').bind("click", validate);
-        editSubmit.key = this.key;        
-    }
-    
-    function deleteItem(){
-        var ask = confirm("Are you sure you want to delete this item?");
-        if (ask){
-            localStorage.removeItem(this.key);
-            alert("Item was deleted.");
-            window.location.reload();
-        }else{
-            alert("Item was NOT deleted.");
-        }
-    }
     
     function clearLocal(){
         if(localStorage.length === 0){
@@ -229,46 +172,17 @@ $('#gift').live('pageshow',function(){
             return false;    
         }
     }
-    
-    //Make Item Links Function
-    //Create edit and delete links for each stored item when displayed
-    
-    function makeItemLinks (key, linksLi){
-    //add edit single item link
-        var editLink = $('a');
-        editLink.href = "#";
-        editLink.key = key;
-        var editText ="Edit List";
-        $('#editLink').bind("click", editItem);
-        //editLink.addEventListener("click", editItem);
-        editLink.innerHTML = editText;
-        $('linksLi').append('editLink');
-        
-        //add line break
-        var breakTag = $('br');
-        $('linksLi').append('breakTag');
-        
-        //delete single item link
-        var deleteLink = $('a');
-        deleteLink.href = "#";
-        deleteLink.key = key;
-        var deleteText = "Delete Item";
-        $('#deleteLink').bind("click", deleteItem);
-        //deleteLink.addEventListener("click", deleteItem);
-        deleteLink.innerHTML = deleteText;
-        $('linksLi').append('deleteLink');
-    }
-    //Auto Populate Local Storage
+    /*  //Auto Populate Local Storage
     function autoFillData(){
         for(var n in json){
             var id = Math.floor(Math.random()*100000001);
             localStorage.setItem(id,JSON.stringify(json[n]));
         }
     
-    }
+    }*/
      
 
-    function getData(){
+  /*  function getData(){
         toggleControls("on");
         //write data from local storage to browser.
         if(localStorage.length === 0){
@@ -300,10 +214,10 @@ $('#gift').live('pageshow',function(){
             makeItemLinks(localStorage.key(i), linksLi); //Edit and delete buttons for Local Storage
         }
     }
-    
+ */   
     //set link and click events
-    var displayData = $('#displayData');
-    $('#displayData').bind("click", getData);
+   // var displayData = $('#displayData');
+   // $('#displayData').bind("click", getData);
     var clearData =$('#clearData');
     $('#clearData').bind("click", clearLocal);
     var saveData = $('#saveData');
@@ -312,7 +226,7 @@ $('#gift').live('pageshow',function(){
 
 // DATA CALLS
   
-/*$('#giftList').live('pageshow', function(){
+/*$('#giftList').bind('pageshow', function(){
 		$.ajax({
 			url: '_view/gifts',
 			type: 'GET',
@@ -471,79 +385,12 @@ $('#gift').live('pageshow',function(){
 
       });
  });
- // Week Four Edit 
-  $('#editGift').live('pageshow', function(){
-    	console.log("edit is loaded");						
-
-        var giftID= {};   //holds the id and rev#
-    	var setObject = function(object){	
-    		console.log("setObject is: ", object);
-    		giftID._id = object._id;
-    		giftID._rev = object._rev;
-    		console.log("id is ", giftID);					
-   }; 
-    var splitURL= function (){
-    	var urlData = document.URL;
-    	var urlParts = urlData.split('?');
-    	var urlVals = urlParts[1].split('&');
-    	var idVals = {};
-    	for (var i in urlVals){
-    		var keyValue = urlVals[i].split('=');
-    		var key = decodeURIComponent(keyValue[1]);
-    		idVals[key] = value;			
-    	}
-    	console.log("success on split");
-    	console.log(idVals[key]);
-    	return(idVals[key]);  
-    };
-    
-    var giftToEdit = splitURL();
-    
-   // Load json
-
-    var loadGift = function (myGift){
-		$.couch.db('xmasapp').openDoc(myGift, {
-			success: function(data) {
-				$('#getRidOf').remove();	
-				setObject(data);						
-        		console.log(data);
-            	$('#category').html(data.category[1]).trigger('create');
-            	$('#comments').html(data.comments[1]);
-            	$('#amount').html(data.amount[1]);
-            	$('#location').html(data.location[1]);
-            	$('#store').html(data.store[1]);
-            	$('#url').html(data.url[1]);
-            	$('#date').html(data.date[1]);
-	         }
-	    });
-    };
-    loadGift(giftToEdit);
- // Delete function!
-    var deleteGift = function(removeID){						
-    	var idToDelete = {};									
-    	idToDelete._id = removeID._id;
-    	idToDelete._rev = removeID._rev;						
-    	console.log(idToDelete, "will remove be deleted.");			
-    	$.couch.db('xmasapp').removeDoc(idToDelete, {			
-    		success: function(data){
-    		console.log("Item deleted!");
-    		}
-    	});	
-    };
-    
-    
-    $('#remove').on("click", function(){						
-    	console.log("Do you want to remove: ", giftID);					
-    		deleteGift(giftID);			
-    		$.mobile.changePage("index.html#gift", { transition: "slideup"} );
-    	});	
-    });
   
 }); //gift close
 
 // couchdata function
 //$('#couchbutton').bind('click', function(){
-	$('#giftPage').live('pageinit',function(){
+	$('#giftPage').bind('pageinit',function(){
   	//console.log("button pressed");
       $('#couchgifts').empty();
       $('<p>').html('COUCH DATA IMPORT').appendTo('#couchgifts');
@@ -553,7 +400,7 @@ $('#gift').live('pageshow',function(){
              $.each(data.rows, function(index,gift){
               var id = gift.id;
               console.log(id);
-              //var rev = gift.rev;
+              var rev = gift.value.revision;
               var category = gift.value.category;
               console.log(gift.value.category);
               var comments = gift.value.comments;
@@ -576,6 +423,105 @@ $('#gift').live('pageshow',function(){
               console.log($('#giftdata'));
           }
       });
-  });   
+      var editLink = $('<a>Edit</a>').attr({href:'#', id:id});
+		// Edit link event listenener
+		editLink.bind('click',function () {
+			$('#displayData').hide();
+			$('#clearData').hide();
+		      
+			$('category').value = item.category[1];
+			$('#category').textinput();
+		      
+		    $('comments').value = gifts.value.comments[1];
+	        $('#comments').textinput();
+	          
+	        $('amount').value = gifts.value.amount[1];
+	        $('#amount').val(80).slider('refresh');
+	          
+	      // radio buttons
+	          	if (gifts.value.location[1] === "online") {
+					$('#online').attr('checked',true);
+				}
+				else if (gifts.value.location[1] === "store") {
+					$('#store').attr('checked',true);
+				};
+		    $('store').value = gifts.value.store[1];
+		    $('#store').textinput();
+		    
+		    $('url').value = gifts.value.url[1];
+		    $('#url').textinput();
+		    
+		    $('date').value = gifts.value.date[1];
+		    $('#date').textinput();
+	          
+	          
+			// change eventListener for submit button for edit mode
+			$('#submit').html("Save Item Changes");
+			$('#submit').die('click');
+			$('#submit').bind('click', function () {
+				storeData(id, rev);
+			});
+			$('#submit').button('refresh');
+		});
+		
+
+		var deleteLink = $('<a>Delete</a>').attr({href:'#', id:id});
+		deleteLink.on('click',function () {
+			var ask = confirm("Are you sure you want to delete this item?");
+			if (ask){
+				$.couch.db('xmasapp').removeDoc({_id:id, _rev:rev});
+				alert("Item was deleted.");
+				$.mobile.changePage('#giftPage');		
+			}
+			else{
+				alert("Item was NOT deleted.");
+			};
+		});
+		var imageLi =  $('<li></li>');
+		var newImage = $('<img/>').attr({"src"+ catName +".png"});
+		newImage.appendTo(imageLi);
+		//place the edit and delete link in a listitem
+		linksLi.append(editLink).append('<br/>').append(deleteLink);
+		// appending everything to the storageList
+		$('<li></li>').append(imageLi).append(itemList).append(linksLi).appendTo('#couchgifts');
+	});
+	$('#storageList').listview('refresh');
+}
+});
+};
+// ----------------------------------------
+
+// Run display function --- data populate data when page is loaded
+display();
+});
+
+      
+      function makeItemLinks (key, linksLi){
+      //add edit single item link
+          var editLink = $('a');
+          editLink.href = "#";
+          editLink.key = key;
+          var editText ="Edit List";
+          $('#editLink').bind("click", editItem);
+          //editLink.addEventListener("click", editItem);
+          editLink.innerHTML = editText;
+          $('linksLi').append('editLink');
+          
+          //add line break
+          var breakTag = $('br');
+          $('linksLi').append('breakTag');
+          
+          //delete single item link
+          var deleteLink = $('a');
+          deleteLink.href = "#";
+          deleteLink.key = key;
+          var deleteText = "Delete Item";
+          $('#deleteLink').bind("click", deleteItem);
+          //deleteLink.addEventListener("click", deleteItem);
+          deleteLink.innerHTML = deleteText;
+          $('linksLi').append('deleteLink');
+      }	
+      
+});   // page end
 
 
